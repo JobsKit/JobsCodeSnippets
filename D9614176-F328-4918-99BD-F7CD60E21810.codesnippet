@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>CustomButton</string>
+	<string></string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>[&lt;#name#&gt; layoutButtonWithEdgeInsetsStyle:&lt;#(GLButtonEdgeInsetsStyle)#&gt; imageTitleSpace:&lt;#(CGFloat)#&gt;];</string>
+	<string>@implementation ImageNumberView</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>2EE09BC3-16B5-47C0-B49F-B05BBA1DB1FD</string>
+	<string>D9614176-F328-4918-99BD-F7CD60E21810</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>高度自定义的按钮</string>
+	<string>My Code Snippet</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
