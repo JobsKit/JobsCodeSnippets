@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>TBV</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#pragma mark —— UITableViewDelegate,UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [BaseTableViewCell cellHeightWithModel:Nil];
+}
+
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section{
+    return self.dataMutArr.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    BaseTableViewCell *cell = [BaseTableViewCell cellWithTableView:tableView];
+    [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView
+heightForHeaderInSection:(NSInteger)section{
+    [DDPersonalCentreHeaderView heightWithModel:nil];
+}
+
+- (void)tableView:(UITableView *)tableView
+  willDisplayCell:(UITableViewCell *)cell
+forRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView hideSeparatorLineAtLast:indexPath
+                                  cell:cell];
+}
+
+- (UIView *)tableView:(UITableView *)tableView
+viewForHeaderInSection:(NSInteger)section{
+    DDPersonalCentreHeaderView *headerView = [[DDPersonalCentreHeaderView alloc] initWithReuseIdentifier:NSStringFromClass(DDPersonalCentreHeaderView.class)];
+    [headerView richElementsInViewWithModel:nil];
+    @weakify(self)
+    [headerView actionViewBlock:^(id data) {
+
+    }];return headerView;
+}
+#pragma mark —— lazyLoad
+-(UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = UITableView.new;
+        _tableView.backgroundColor = AppMainCor_02;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.tableFooterView = UIView.new;
+        _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
+        //        {
+        //            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+        //            refreshConfigHeader.stateIdleTitle = @"下拉可以刷新";
+        //            refreshConfigHeader.pullingTitle = @"下拉可以刷新";
+        //            refreshConfigHeader.refreshingTitle = @"松开立即刷新";
+        //            refreshConfigHeader.willRefreshTitle = @"刷新数据中";
+        //            refreshConfigHeader.noMoreDataTitle = @"下拉可以刷新";
+        //
+        //            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
+        //            refreshConfigFooter.stateIdleTitle = @"";
+        //            refreshConfigFooter.pullingTitle = @"";
+        //            refreshConfigFooter.refreshingTitle = @"";
+        //            refreshConfigFooter.willRefreshTitle = @"";
+        //            refreshConfigFooter.noMoreDataTitle = @"";
+        //
+        //            self.refreshConfigHeader = refreshConfigHeader;
+        //            self.refreshConfigFooter = refreshConfigFooter;
+        //
+        //            _tableView.mj_header = self.mjRefreshNormalHeader;
+        //            _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+        //        }
+        
+        [self.view addSubview:_tableView];
+        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            if (self.setupNavigationBarHidden || self.gk_statusBarHidden) {// 系统、GK均隐藏
+                make.edges.equalTo(self.view);
+            }else{
+                if (!self.setupNavigationBarHidden &amp;&amp; self.gk_statusBarHidden) {// 用系统的导航栏
+                    make.top.equalTo(self.view).offset(NavigationBarAndStatusBarHeight(nil));
+                }
+                
+                if (self.setupNavigationBarHidden &amp;&amp; !self.gk_statusBarHidden) {// 用GK的导航栏
+                    make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                }
+                
+                make.left.right.bottom.equalTo(self.view);
+            }
+        }];
+    }return _tableView;
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>D73EFE8C-AC74-45A3-A43D-2757D8F759F9</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>创建TableView</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
