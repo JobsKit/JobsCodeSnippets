@@ -139,8 +139,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero
-                                                       collectionViewLayout:self.layout];
+        _collectionView = [UICollectionView.alloc initWithFrame:CGRectZero
+                                           collectionViewLayout:self.layout];
         _collectionView.backgroundColor = RGB_SAMECOLOR(246);
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
