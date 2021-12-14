@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>CategoryDataProperties</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>static char *UIViewController_NavigationBar_isHiddenNavigationBar = "UIViewController_NavigationBar_isHiddenNavigationBar";
+@dynamic isHiddenNavigationBar;
+#pragma mark —— @property(nonatomic,assign)BOOL isHiddenNavigationBar
+-(BOOL)isHiddenNavigationBar{//默认不显示
+    BOOL IsHiddenNavigationBar = [objc_getAssociatedObject(self, UIViewController_NavigationBar_isHiddenNavigationBar) boolValue];
+    return IsHiddenNavigationBar;
+}
+
+-(void)setIsHiddenNavigationBar:(BOOL)isHiddenNavigationBar{
+    [self.navigationController setNavigationBarHidden:isHiddenNavigationBar animated:true];
+    objc_setAssociatedObject(self,
+                             UIViewController_NavigationBar_isHiddenNavigationBar,
+                             [NSNumber numberWithBool:isHiddenNavigationBar],
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>9DF745FD-2AE3-4EA4-B5B3-0E355CC9D446</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>分类加数据属性</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

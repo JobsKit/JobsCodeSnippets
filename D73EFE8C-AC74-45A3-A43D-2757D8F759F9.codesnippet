@@ -70,27 +70,37 @@ viewForHeaderInSection:(NSInteger)section{
         _tableView.tableFooterView = UIView.new;
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         _tableView.contentInset = UIEdgeInsetsMake(KWidth(20), 0, 0, 0);
-        //        {
-        //            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-        //            refreshConfigHeader.stateIdleTitle = @"下拉可以刷新";
-        //            refreshConfigHeader.pullingTitle = @"下拉可以刷新";
-        //            refreshConfigHeader.refreshingTitle = @"松开立即刷新";
-        //            refreshConfigHeader.willRefreshTitle = @"刷新数据中";
-        //            refreshConfigHeader.noMoreDataTitle = @"下拉可以刷新";
-        //
-        //            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-        //            refreshConfigFooter.stateIdleTitle = @"";
-        //            refreshConfigFooter.pullingTitle = @"";
-        //            refreshConfigFooter.refreshingTitle = @"";
-        //            refreshConfigFooter.willRefreshTitle = @"";
-        //            refreshConfigFooter.noMoreDataTitle = @"";
-        //
-        //            self.refreshConfigHeader = refreshConfigHeader;
-        //            self.refreshConfigFooter = refreshConfigFooter;
-        //
-        //            _tableView.mj_header = self.mjRefreshNormalHeader;
-        //            _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
-        //        }
+        {
+            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+            refreshConfigHeader.stateIdleTitle = @"下拉可以刷新";
+            refreshConfigHeader.pullingTitle = @"下拉可以刷新";
+            refreshConfigHeader.refreshingTitle = @"松开立即刷新";
+            refreshConfigHeader.willRefreshTitle = @"刷新数据中";
+            refreshConfigHeader.noMoreDataTitle = @"下拉可以刷新";
+
+            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
+            refreshConfigFooter.stateIdleTitle = @"";
+            refreshConfigFooter.pullingTitle = @"";
+            refreshConfigFooter.refreshingTitle = @"";
+            refreshConfigFooter.willRefreshTitle = @"";
+            refreshConfigFooter.noMoreDataTitle = @"";
+
+            self.refreshConfigHeader = refreshConfigHeader;
+            self.refreshConfigFooter = refreshConfigFooter;
+
+            _tableView.mj_header = self.mjRefreshNormalHeader;
+            _tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+        }
+        
+        {
+            _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
+                                                                titleStr:@"暂无数据"
+                                                               detailStr:@""];
+            
+            _tableView.ly_emptyView.titleLabTextColor = KLightGrayColor;
+            _tableView.ly_emptyView.contentViewOffset = -KWidth(180);
+            _tableView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:KWidth(16) weight:UIFontWeightMedium];
+        }
         
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
