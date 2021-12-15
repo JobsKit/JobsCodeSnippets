@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>CustomNotification</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/**
+ 通知的写法：示例代码
+ 
+ 接受通知：
+         @weakify(self)
+         [NSNotificationCenter.defaultCenter addObserver:self
+                                                selector:selectorBlocks(^(id  _Nullable weakSelf,
+                                                                          id  _Nullable arg) {
+             NSNotification *notification = (NSNotification *)arg;
+             NSNumber *b = notification.object;
+             NSLog(@"SSS = %d",b.boolValue);
+             @strongify(self)
+             self.imageView.hidden = !b.boolValue;
+             self.imageView.hidden = self.selectedIndex != 4;
+             self.imageView.alpha = b.boolValue;
+         }, self)
+                                                    name:@"点击开拍提示"
+                                                  object:nil];
+ 
+ 发通知：[NSNotificationCenter.defaultCenter postNotificationName:@"点击开拍提示" object:@(NO)];
+ 
+ */</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>2F253D33-35B8-407B-AE16-933659BA6858</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>自定义通知的调用</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
