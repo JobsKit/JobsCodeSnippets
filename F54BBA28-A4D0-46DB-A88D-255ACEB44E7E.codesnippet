@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>VG</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>        {// A
+            _userHeadIMGV.userInteractionEnabled = YES;
+            _userHeadIMGV.target = self;
+            _userHeadIMGV.numberOfTouchesRequired = 1;
+            _userHeadIMGV.numberOfTapsRequired = 1;
+            _userHeadIMGV.tapGR.enabled = YES;
+            @jobs_weakify(self)
+            _userHeadIMGV.callbackBlock = ^(id weakSelf, id arg, UIGestureRecognizer *data3) {
+                @jobs_strongify(self)
+                [weakSelf forceComingToPushVC:JobsShowObjInfoVC.new
+                                requestParams:self.readUserInfo];// 测试专用
+            };
+        }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F54BBA28-A4D0-46DB-A88D-255ACEB44E7E</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>View加手势</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
