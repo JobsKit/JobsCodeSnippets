@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsRefresh</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>///下拉刷新 （子类要进行覆写）
+-(void)pullToRefresh{
+    [NSObject feedbackGenerator];//震动反馈
+    if (self.dataMutArr.count) {
+        [self.dataMutArr removeAllObjects];
+    }
+    [self loadData];
+    if (self.dataMutArr.count) {
+        [self endRefreshing:self.tableView];
+    }else{
+        [self endRefreshingWithNoMoreData:self.tableView];
+    }
+}
+///上拉加载更多 （子类要进行覆写）
+-(void)loadMoreRefresh{
+    [self pullToRefresh];
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>6062866B-5584-4611-B551-C7C057A95758</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>上拉加载、下拉刷新</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

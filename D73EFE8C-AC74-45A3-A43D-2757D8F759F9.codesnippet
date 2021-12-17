@@ -9,7 +9,13 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>#pragma mark —— UITableViewDelegate,UITableViewDataSource
+	<string>
+/// UI
+@property(nonatomic,strong)UITableView *tableView;
+/// Data
+@property(nonatomic,strong)NSMutableArray &lt;UITableViewCell *&gt;*tbvCellMutArr;
+
+#pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -31,7 +37,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    BaseTableViewCell *cell = [BaseTableViewCell cellWithTableView:tableView];
+    BaseTableViewCell *cell = (BaseTableViewCell *)self.tbvCellMutArr[indexPath.row];
     [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];
     return cell;
 }
@@ -104,7 +110,7 @@ viewForHeaderInSection:(NSInteger)section{
         
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            if (self.setupNavigationBarHidden || self.gk_statusBarHidden) {// 系统、GK均隐藏
+            if (self.setupNavigationBarHidden &amp;&amp; self.gk_statusBarHidden) {// 系统、GK均隐藏
                 make.edges.equalTo(self.view);
             }else{
                 if (!self.setupNavigationBarHidden &amp;&amp; self.gk_statusBarHidden) {// 用系统的导航栏
@@ -119,6 +125,16 @@ viewForHeaderInSection:(NSInteger)section{
             }
         }];
     }return _tableView;
+}
+
+-(NSMutableArray&lt;UITableViewCell *&gt; *)tbvCellMutArr{
+    if (!_tbvCellMutArr) {
+        _tbvCellMutArr = NSMutableArray.array;
+        [_tbvCellMutArr addObject:[CasinoAgencyTBVCell1 cellWithTableView:self.tableView]];
+        [_tbvCellMutArr addObject:[CasinoAgencyTBVCell2 cellWithTableView:self.tableView]];
+        [_tbvCellMutArr addObject:[CasinoAgencyTBVCell3 cellWithTableView:self.tableView]];
+        [_tbvCellMutArr addObject:[CasinoAgencyTBVCell4 cellWithTableView:self.tableView]];
+    }return _tbvCellMutArr;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>D73EFE8C-AC74-45A3-A43D-2757D8F759F9</string>
