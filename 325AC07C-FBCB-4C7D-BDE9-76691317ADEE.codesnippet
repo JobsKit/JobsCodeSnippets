@@ -9,7 +9,36 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>#pragma mark - UICollectionViewDataSource
+	<string>
+&lt;
+UICollectionViewDataSource
+,UICollectionViewDelegate
+&gt;
+
+// UI
+@property(nonatomic,strong)UICollectionViewFlowLayout *layout;
+@property(nonatomic,strong)UICollectionView *collectionView;
+// Data
+@property(nonatomic,strong)NSMutableArray &lt;UIViewModel *&gt;*dataMutArr;
+@property(nonatomic,strong)NSMutableArray &lt;UICollectionViewCell *&gt;*cvcellMutArr;
+///下拉刷新 （子类要进行覆写）
+-(void)pullToRefresh{
+    [NSObject feedbackGenerator];//震动反馈
+    if (self.dataMutArr.count) {
+        [self.dataMutArr removeAllObjects];
+    }
+//    [self loadData];
+    if (self.dataMutArr.count) {
+        [self endRefreshing:self.collectionView];
+    }else{
+        [self endRefreshingWithNoMoreData:self.collectionView];
+    }
+}
+///上拉加载更多 （子类要进行覆写）
+-(void)loadMoreRefresh{
+    [self pullToRefresh];
+}
+#pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
@@ -147,6 +176,38 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         _collectionView.showsVerticalScrollIndicator = NO;
         
         [_collectionView registerCollectionViewClass];
+        
+        {
+            MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
+            refreshConfigHeader.stateIdleTitle = @"下拉可以刷新";
+            refreshConfigHeader.pullingTitle = @"下拉可以刷新";
+            refreshConfigHeader.refreshingTitle = @"松开立即刷新";
+            refreshConfigHeader.willRefreshTitle = @"刷新数据中";
+            refreshConfigHeader.noMoreDataTitle = @"下拉可以刷新";
+
+            MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
+            refreshConfigFooter.stateIdleTitle = @"";
+            refreshConfigFooter.pullingTitle = @"";
+            refreshConfigFooter.refreshingTitle = @"";
+            refreshConfigFooter.willRefreshTitle = @"";
+            refreshConfigFooter.noMoreDataTitle = @"";
+
+            self.refreshConfigHeader = refreshConfigHeader;
+            self.refreshConfigFooter = refreshConfigFooter;
+
+            _collectionView.mj_header = self.mjRefreshNormalHeader;
+            _collectionView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+        }
+        
+        {
+            _collectionView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
+                                                                titleStr:@"暂无数据"
+                                                               detailStr:@""];
+            
+            _collectionView.ly_emptyView.titleLabTextColor = KLightGrayColor;
+            _collectionView.ly_emptyView.contentViewOffset = -KWidth(180);
+            _collectionView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:KWidth(16) weight:UIFontWeightMedium];
+        }
 
         [self.scrollView addSubview:_collectionView];
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {

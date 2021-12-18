@@ -10,11 +10,32 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>
+&lt;
+UITableViewDelegate
+,UITableViewDataSource
+&gt;
+
 /// UI
 @property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray &lt;UITableViewCell *&gt;*tbvCellMutArr;
-
+///下拉刷新 （子类要进行覆写）
+-(void)pullToRefresh{
+    [NSObject feedbackGenerator];//震动反馈
+    if (self.dataMutArr.count) {
+        [self.dataMutArr removeAllObjects];
+    }
+    [self loadData];
+    if (self.dataMutArr.count) {
+        [self endRefreshing:self.tableView];
+    }else{
+        [self endRefreshingWithNoMoreData:self.tableView];
+    }
+}
+///上拉加载更多 （子类要进行覆写）
+-(void)loadMoreRefresh{
+    [self pullToRefresh];
+}
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
