@@ -19,6 +19,7 @@ UITableViewDelegate
 @property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray &lt;UITableViewCell *&gt;*tbvCellMutArr;
+@property(nonatomic,strong)NSMutableArray *dataMutArr;
 ///下拉刷新 （子类要进行覆写）
 -(void)pullToRefresh{
     [NSObject feedbackGenerator];//震动反馈
