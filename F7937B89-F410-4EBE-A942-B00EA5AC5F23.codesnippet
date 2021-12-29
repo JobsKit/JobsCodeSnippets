@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>NetWorking</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>-(void)getBankcardBanklist:(MKDataBlock _Nullable)block{
+    DDNetworkingPrepare
+    
+    NSDictionary *parameters = @{
+        @"address":@"",// 开户地址
+        @"bankAccount":@"",// 银行账号
+        @"bankId":@"",// 银行卡id
+        @"realName":@"",// 持卡人姓名
+    };
+    
+    RequestTool *config = RequestTool.new;
+    config.languageType = HTTPRequestHeaderLanguageCN;
+    [RequestTool setupPublicParameters:config];
+    [DDNetworkingAPI requestApi:NSObject.bankcardBanklistGET.funcName
+                     parameters:nil
+                   successBlock:^(DDResponseModel *data) {
+        if (block) block(data);
+    } failureBlock:^(id data) {
+        [DDNetworkingAPI handleError:data];
+    }];
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F7937B89-F410-4EBE-A942-B00EA5AC5F23</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>网络请求示例</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
