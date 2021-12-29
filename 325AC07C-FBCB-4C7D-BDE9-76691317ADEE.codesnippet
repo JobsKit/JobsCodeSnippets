@@ -25,15 +25,22 @@ UICollectionViewDataSource
 ///下拉刷新 （子类要进行覆写）
 -(void)pullToRefresh{
     [NSObject feedbackGenerator];//震动反馈
-    if (self.dataMutArr.count) {
-        [self.dataMutArr removeAllObjects];
-    }
-//    [self loadData];
-    if (self.dataMutArr.count) {
-        [self endRefreshing:self.collectionView];
-    }else{
-        [self endRefreshingWithNoMoreData:self.collectionView];
-    }
+    @jobs_weakify(self)
+    [self withdrawBanklist:^(NSArray *data) {
+        @jobs_strongify(self)
+        if (data.count) {
+            [self endRefreshing:self.collectionView];
+        }else{
+            [self endRefreshingWithNoMoreData:self.collectionView];
+        }
+        /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
+        @jobs_weakify(self)
+        [self getMainQueue:^{
+            @jobs_strongify(self)
+            [CollectionViewAnimationKit showWithAnimationType:XSCollectionViewAnimationTypeFall
+                                               collectionView:self.collectionView];
+        }];
+    }];
 }
 ///上拉加载更多 （子类要进行覆写）
 -(void)loadMoreRefresh{
