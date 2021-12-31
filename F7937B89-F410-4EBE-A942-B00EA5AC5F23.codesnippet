@@ -20,7 +20,7 @@
     };
     
     RequestTool *config = RequestTool.new;
-    config.languageType = HTTPRequestHeaderLanguageCN;
+    config.languageType = self.currentLanguageType;
     [RequestTool setupPublicParameters:config];
     [DDNetworkingAPI requestApi:NSObject.bankcardBanklistGET.funcName
                      parameters:nil
