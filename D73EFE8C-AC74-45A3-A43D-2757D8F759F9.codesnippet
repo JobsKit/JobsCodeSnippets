@@ -135,6 +135,14 @@ viewForHeaderInSection:(NSInteger)section{
             _tableView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:KWidth(16) weight:UIFontWeightMedium];
         }
         
+        {/// 设置tabAnimated相关属性
+            // 可以不进行手动初始化，将使用默认属性
+            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:DDSignlePeopleCell.class
+                                                                  cellHeight:74.5];
+            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+            [_tableView tab_startAnimation];   // 开启动画
+        }
+        
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             if (self.setupNavigationBarHidden &amp;&amp; self.gk_statusBarHidden) {// 系统、GK均隐藏
