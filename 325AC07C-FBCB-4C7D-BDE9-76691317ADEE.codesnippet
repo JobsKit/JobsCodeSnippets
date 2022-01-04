@@ -22,6 +22,39 @@ UICollectionViewDataSource
 // Data
 @property(nonatomic,strong)NSMutableArray &lt;UIViewModel *&gt;*dataMutArr;
 @property(nonatomic,strong)NSMutableArray &lt;UICollectionViewCell *&gt;*cvcellMutArr;
+
+/// 部署策略
+-(UICollectionViewCell *)planAtIndexPath:(nonnull NSIndexPath *)indexPath
+                                  block1:(ResultBlock)block1
+                                  block2:(ResultBlock)block2
+                                  block3:(ResultBlock)block3
+                                  block4:(ResultBlock)block4{
+    if (indexPath.item == 0) {
+        if (block1) return block1();
+    }else if (indexPath.item == 1){
+        if (block2) return block2();
+    }else if(indexPath.item == self.cvcellMutArr.count - 1){
+        if (block3) return block3();
+    }else{
+        if (block4) return block4();
+    }return nil;
+}
+
+-(CGSize)planSizeAtIndexPath:(nonnull NSIndexPath *)indexPath
+                      block1:(ResultSizeBlock)block1
+                      block2:(ResultSizeBlock)block2
+                      block3:(ResultSizeBlock)block3
+                      block4:(ResultSizeBlock)block4{
+    if (indexPath.item == 0) {
+        if (block1) return block1();
+    }else if (indexPath.item == 1){
+        if (block2) return block2();
+    }else if(indexPath.item == self.cvcellMutArr.count - 1){
+        if (block3) return block3();
+    }else{
+        if (block4) return block4();
+    }return CGSizeZero;
+}
 ///下拉刷新 （子类要进行覆写）
 -(void)pullToRefresh{
     [NSObject feedbackGenerator];//震动反馈
@@ -53,15 +86,51 @@ UICollectionViewDataSource
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
-    if (indexPath.row == 0) {
-        UBLVideoCollectionViewCell_Style14 *cell = [UBLVideoCollectionViewCell_Style14 cellWithCollectionView:collectionView
-                                                                                                 forIndexPath:indexPath];
-        [cell richElementsInCellWithModel:nil];
+    @jobs_weakify(self)
+    return [self planAtIndexPath:indexPath
+                   block1:^{
+        @jobs_strongify(self)
+        self-&gt;rechargeCVCellStyle2_1 = (CasinoRechargeCVCellStyle2 *)self.cvcellMutArr[indexPath.item];
+        UIViewModel *viewModel = UIViewModel.new;
+        viewModel.text = Internationalization(@"Recharge Amount");
+        [self-&gt;rechargeCVCellStyle2_1 richElementsInCellWithModel:viewModel];
+        return self-&gt;rechargeCVCellStyle2_1;
+    }block2:^{
+        @jobs_strongify(self)
+        CasinoRechargeCVCellStyle1 *cell = (CasinoRechargeCVCellStyle1 *)self.cvcellMutArr[indexPath.item];
+        [cell richElementsInCellWithModel:self.rechargeAmountMutArr];
+        @jobs_weakify(self)
+        [cell actionViewBlock:^(UIButton *data) {
+            @jobs_strongify(self)
+            NSString *string = data.titleForNormalState;
+            NSLog(@"%@",string);
+            self-&gt;rechargeCVCellStyle2_1.getTextField.text = string;
+        }];
         return cell;
-    }else{
-        return nil;
-    }
+    }block3:^{
+        @jobs_strongify(self)
+        self-&gt;rechargeCVCellStyle2_2 = (CasinoRechargeCVCellStyle2 *)self.cvcellMutArr[indexPath.item];
+        UIViewModel *viewModel = UIViewModel.new;
+        viewModel.text = Internationalization(@"Remitter Name");
+        [self-&gt;rechargeCVCellStyle2_2 richElementsInCellWithModel:viewModel];
+        return self-&gt;rechargeCVCellStyle2_2;
+    }block4:^{
+        @jobs_strongify(self)
+        CasinoRechargeCVCellStyle3 *cell = (CasinoRechargeCVCellStyle3 *)self.cvcellMutArr[indexPath.item];
+        cell.idx = indexPath.item - 2;
+        
+        if (self.dataMutArr.count) {
+            [cell richElementsInCellWithModel:self.dataMutArr[indexPath.item - 2]];
+            self.selectedModel = self.dataMutArr[0];
+        }
+        @jobs_weakify(self)
+        [cell actionViewBlock:^(NSString *data) {
+            @jobs_strongify(self)
+            [data pasteboard];
+        }];
+        
+        return cell;
+    }];
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
@@ -143,16 +212,16 @@ referenceSizeForFooterInSection:(NSInteger)section{
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            return [UBLVideoCollectionViewCell_Style14 cellSizeWithModel:nil];
-        }else{
-            return [UBLVideoCollectionViewCell_Style13 cellSizeWithModel:nil];
-        }
-    }else{
-        return CGSizeZero;
-    }
+    return [self planSizeAtIndexPath:indexPath
+                              block1:^CGSize{
+        return [CasinoRechargeCVCellStyle2 cellSizeWithModel:nil];
+    }block2:^CGSize{
+        return [CasinoRechargeCVCellStyle1 cellSizeWithModel:self.rechargeAmountMutArr];
+    }block3:^CGSize{
+        return [CasinoRechargeCVCellStyle2 cellSizeWithModel:nil];
+    }block4:^CGSize{
+        return [CasinoRechargeCVCellStyle3 cellSizeWithModel:nil];
+    }];
 }
 /// 定义的是元素垂直之间的间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView
