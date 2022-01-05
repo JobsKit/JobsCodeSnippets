@@ -22,9 +22,11 @@
     RequestTool *config = RequestTool.new;
     config.languageType = self.currentLanguageType;
     [RequestTool setupPublicParameters:config];
+    @jobs_weakify(self)
     [DDNetworkingAPI requestApi:NSObject.bankcardBanklistGET.funcName
                      parameters:nil
                    successBlock:^(DDResponseModel *data) {
+        @jobs_strongify(self)
         if (block) block(data);
     } failureBlock:^(id data) {
         [DDNetworkingAPI handleError:data];
