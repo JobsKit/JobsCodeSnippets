@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>TBV</string>
+	<string>CreateTableView</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -11,7 +11,8 @@
 	<key>IDECodeSnippetContents</key>
 	<string>
 &lt;
-UITableViewDelegate
+BaseViewProtocol
+,UITableViewDelegate
 ,UITableViewDataSource
 &gt;
 
@@ -20,6 +21,8 @@ UITableViewDelegate
 /// Data
 @property(nonatomic,strong)NSMutableArray &lt;UITableViewCell *&gt;*tbvCellMutArr;
 @property(nonatomic,strong)NSMutableArray *dataMutArr;
+@property(nonatomic,strong)NSMutableArray &lt;NSString *&gt;*dataMutArr;
+
 ///下拉刷新 （子类要进行覆写）
 -(void)pullToRefresh{
     [NSObject feedbackGenerator];//震动反馈
@@ -102,7 +105,7 @@ viewForHeaderInSection:(NSInteger)section{
         _tableView.tableHeaderView = UIView.new;
         _tableView.tableFooterView = UIView.new;
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-        _tableView.contentInset = UIEdgeInsetsMake(KWidth(20), 0, 0, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(JobsWidth(20), 0, 0, 0);
         {
             MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
             refreshConfigHeader.stateIdleTitle = @"下拉可以刷新";
@@ -131,8 +134,8 @@ viewForHeaderInSection:(NSInteger)section{
                                                                detailStr:@""];
             
             _tableView.ly_emptyView.titleLabTextColor = KLightGrayColor;
-            _tableView.ly_emptyView.contentViewOffset = -KWidth(180);
-            _tableView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:KWidth(16) weight:UIFontWeightMedium];
+            _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);
+            _tableView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:JobsWidth(16) weight:UIFontWeightMedium];
         }
         
         {/// 设置tabAnimated相关属性
@@ -149,7 +152,7 @@ viewForHeaderInSection:(NSInteger)section{
                 make.edges.equalTo(self.view);
             }else{
                 if (!self.setupNavigationBarHidden &amp;&amp; self.gk_statusBarHidden) {// 用系统的导航栏
-                    make.top.equalTo(self.view).offset(NavigationBarAndStatusBarHeight(nil));
+                    make.top.equalTo(self.view).offset(JobsNavigationBarAndStatusBarHeight(nil));
                 }
                 
                 if (self.setupNavigationBarHidden &amp;&amp; !self.gk_statusBarHidden) {// 用GK的导航栏
@@ -170,6 +173,12 @@ viewForHeaderInSection:(NSInteger)section{
         [_tbvCellMutArr addObject:[CasinoAgencyTBVCell3 cellWithTableView:self.tableView]];
         [_tbvCellMutArr addObject:[CasinoAgencyTBVCell4 cellWithTableView:self.tableView]];
     }return _tbvCellMutArr;
+}
+
+-(NSMutableArray&lt;NSString *&gt; *)dataMutArr{
+    if (!_dataMutArr) {
+        _dataMutArr = NSMutableArray.array;
+    }return _dataMutArr;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>D73EFE8C-AC74-45A3-A43D-2757D8F759F9</string>
