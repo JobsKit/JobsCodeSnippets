@@ -135,7 +135,7 @@ UICollectionViewDataSource
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
-    return 4;
+    return self.dataMutArr.count;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
@@ -330,6 +330,23 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             make.bottom.equalTo(self.view);
         }];
     }return _collectionView;
+}
+
+-(NSMutableArray&lt;UICollectionViewCell *&gt; *)cvcellMutArr{
+    if (!_cvcellMutArr) {
+        _cvcellMutArr = NSMutableArray.array;
+        
+        [_cvcellMutArr addObject:[CasinoRechargeCVCellStyle2 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){0,0}]]];
+        [_cvcellMutArr addObject:[CasinoRechargeCVCellStyle1 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){1,0}]]];
+        [_cvcellMutArr addObject:[CasinoRechargeCVCellStyle2 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){2,0}]]];
+        
+    }return _cvcellMutArr;
+}
+
+-(NSMutableArray&lt;UIViewModel *&gt; *)dataMutArr{
+    if (!_dataMutArr) {
+        _dataMutArr = NSMutableArray.array;
+    }return _dataMutArr;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>325AC07C-FBCB-4C7D-BDE9-76691317ADEE</string>
