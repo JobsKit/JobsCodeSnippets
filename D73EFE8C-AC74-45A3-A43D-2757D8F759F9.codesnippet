@@ -108,11 +108,11 @@ viewForHeaderInSection:(NSInteger)section{
         _tableView.contentInset = UIEdgeInsetsMake(JobsWidth(20), 0, 0, 0);
         {
             MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
-            refreshConfigHeader.stateIdleTitle = @"下拉可以刷新";
-            refreshConfigHeader.pullingTitle = @"下拉可以刷新";
-            refreshConfigHeader.refreshingTitle = @"松开立即刷新";
-            refreshConfigHeader.willRefreshTitle = @"刷新数据中";
-            refreshConfigHeader.noMoreDataTitle = @"下拉可以刷新";
+            refreshConfigHeader.stateIdleTitle = Internationalization(@"下拉可以刷新");
+            refreshConfigHeader.pullingTitle = Internationalization(@"下拉可以刷新");
+            refreshConfigHeader.refreshingTitle = Internationalization(@"松开立即刷新");
+            refreshConfigHeader.willRefreshTitle = Internationalization(@"刷新数据中");
+            refreshConfigHeader.noMoreDataTitle = Internationalization(@"下拉可以刷新");
 
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
             refreshConfigFooter.stateIdleTitle = @"";
