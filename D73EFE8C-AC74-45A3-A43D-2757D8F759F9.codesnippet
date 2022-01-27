@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>CreateTableView</string>
+	<string>CreateUITableView</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -86,10 +86,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (UIView *)tableView:(UITableView *)tableView
 viewForHeaderInSection:(NSInteger)section{
-    DDPersonalCentreHeaderView *headerView = [[DDPersonalCentreHeaderView alloc] initWithReuseIdentifier:NSStringFromClass(DDPersonalCentreHeaderView.class)];
+    DDPersonalCentreHeaderView *header = DDPersonalCentreHeaderView.jobsInitWithReuseIdentifier;
     [headerView richElementsInViewWithModel:nil];
     @weakify(self)
-    [headerView actionViewBlock:^(id data) {
+    [headerView actionObjectBlock:^(id data) {
 
     }];return headerView;
 }
@@ -106,6 +106,13 @@ viewForHeaderInSection:(NSInteger)section{
         _tableView.tableFooterView = UIView.new;
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         _tableView.contentInset = UIEdgeInsetsMake(JobsWidth(20), 0, 0, 0);
+        
+        if(@available(iOS 11.0, *)) {
+            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }else{
+            SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
+        }
+        
         {
             MJRefreshConfigModel *refreshConfigHeader = MJRefreshConfigModel.new;
             refreshConfigHeader.stateIdleTitle = Internationalization(@"下拉可以刷新");
@@ -184,10 +191,12 @@ viewForHeaderInSection:(NSInteger)section{
 	<string>D73EFE8C-AC74-45A3-A43D-2757D8F759F9</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>创建TableView</string>
+	<string>创建UITableView</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

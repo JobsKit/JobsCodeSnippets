@@ -9,7 +9,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>if (self.viewBlock) self.viewBlock(data);</string>
+	<string>if (self.objectBlock) self.objectBlock(data);</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>7CD07180-9F62-4769-BF8C-E068C1542AA5</string>
 	<key>IDECodeSnippetLanguage</key>

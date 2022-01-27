@@ -3,25 +3,22 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>CreateBaseCell</string>
+	<string>CreateUICollectionViewCell</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>#pragma mark —— BaseCellProtocol
-+(instancetype)cellWithTableView:(UITableView *)tableView{
-    CasinoAgencyTBVCell4 *cell = (CasinoAgencyTBVCell4 *)[tableView tableViewCellClass:CasinoAgencyTBVCell4.class];
-    if (!cell) {
-        cell = [CasinoAgencyTBVCell4 initTableViewCellWithStyle:UITableViewCellStyleDefault];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell setCellBgImage:KIMG(@"CasinoAgencyTBVCell4")];
-        cell.offsetXForEach = JobsWidth(7);
-        cell.offsetYForEach = JobsWidth(3);
-        [cell cornerCutToCircleWithCornerRadius:JobsWidth(8)];
-    }return cell;
-}
+	<string>- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
 
+    }return self;
+}
+#pragma mark —— JobsDoorInputViewProtocol
+-(UIViewModel *_Nullable)getViewModel{
+    return self.viewModel;
+}
+#pragma mark —— BaseCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     JobsHotLabelWithMultiLineCVCell *cell = (JobsHotLabelWithMultiLineCVCell *)[collectionView collectionViewCellClass:JobsHotLabelWithMultiLineCVCell.class forIndexPath:indexPath];
@@ -34,15 +31,23 @@
     return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInCellWithModel:(id _Nullable)model;
-/// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)cellHeightWithModel:(id _Nullable)model;
+-(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{
+    [_textLab removeFromSuperview];
+    _textLab = nil;
+    self.viewModel = model;
+    if (self.viewModel) {
+        self.textLab.alpha = 1;
+    }
+}
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)cellSizeWithModel:(id _Nullable)model;
-/// 设置Cell的背景图片
--(void)setCellBgImage:(UIImage *)bgImage;</string>
++(CGSize)cellSizeWithModel:(UIViewModel *_Nullable)model{
+    return [UILabel sizeWithText:model.textModel.text
+                            font:model.textModel.font
+                         maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+}
+#pragma mark —— lazyLoad</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>57BFE4FF-252A-40BD-9480-039BDC171CE9</string>
+	<string>286F7338-B1EE-4BD8-BA7E-6CFCD8A77894</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetPlatformFamily</key>
@@ -50,10 +55,10 @@
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>BaseCellProtocol</string>
+	<string>创建UICollectionViewCell及其子类</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>2</integer>
+	<integer>0</integer>
 </dict>
 </plist>
