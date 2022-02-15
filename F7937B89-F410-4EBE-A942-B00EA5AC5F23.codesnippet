@@ -9,7 +9,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>-(void)getBankcardBanklist:(MKDataBlock _Nullable)block{
+	<string>-(void)getBankcardBanklist:(jobsByIDBlock _Nullable)block{
     DDNetworkingPrepare
     
     NSDictionary *parameters = @{

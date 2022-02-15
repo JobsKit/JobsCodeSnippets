@@ -25,10 +25,10 @@ UICollectionViewDataSource
 
 /// 部署策略
 -(UICollectionViewCell *)planAtIndexPath:(nonnull NSIndexPath *)indexPath
-                                  block1:(ResultBlock)block1
-                                  block2:(ResultBlock)block2
-                                  block3:(ResultBlock)block3
-                                  block4:(ResultBlock)block4{
+                                  block1:(JobsReturnIDByVoidBlock)block1
+                                  block2:(JobsReturnIDByVoidBlock)block2
+                                  block3:(JobsReturnIDByVoidBlock)block3
+                                  block4:(JobsReturnIDByVoidBlock)block4{
     if (indexPath.item == 0) {
         if (block1) return block1();
     }else if (indexPath.item == 1){
@@ -41,10 +41,10 @@ UICollectionViewDataSource
 }
 
 -(CGSize)planSizeAtIndexPath:(nonnull NSIndexPath *)indexPath
-                      block1:(ResultSizeBlock)block1
-                      block2:(ResultSizeBlock)block2
-                      block3:(ResultSizeBlock)block3
-                      block4:(ResultSizeBlock)block4{
+                      block1:(JobsReturnCGSizeByVoidBlock)block1
+                      block2:(JobsReturnCGSizeByVoidBlock)block2
+                      block3:(JobsReturnCGSizeByVoidBlock)block3
+                      block4:(JobsReturnCGSizeByVoidBlock)block4{
     if (indexPath.item == 0) {
         if (block1) return block1();
     }else if (indexPath.item == 1){
