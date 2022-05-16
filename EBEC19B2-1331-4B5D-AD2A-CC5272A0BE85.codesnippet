@@ -9,7 +9,10 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>#pragma mark —— BaseProtocol
+	<string>
+@synthesize viewModel = _viewModel;
+
+#pragma mark —— BaseProtocol
 /// 单例化和销毁
 +(void)destroySingleton{
     static_tipsView01OnceToken = 0;
