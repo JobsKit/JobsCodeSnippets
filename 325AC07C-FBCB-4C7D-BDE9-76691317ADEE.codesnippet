@@ -357,7 +357,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>创建UICollectionView</string>
+	<string>创建UICollectionView的子类</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
