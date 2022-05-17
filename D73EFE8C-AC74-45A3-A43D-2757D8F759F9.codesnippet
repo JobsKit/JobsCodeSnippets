@@ -105,7 +105,7 @@ viewForHeaderInSection:(NSInteger)section{
         _tableView.tableFooterView = UIView.new;
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         _tableView.contentInset = UIEdgeInsetsMake(JobsWidth(20), 0, 0, 0);
-        
+        [_tableView registerTableViewClass];
         if(@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }else{
