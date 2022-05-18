@@ -93,6 +93,6 @@ static dispatch_once_t static_membersBoardViewOnceToken;
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>

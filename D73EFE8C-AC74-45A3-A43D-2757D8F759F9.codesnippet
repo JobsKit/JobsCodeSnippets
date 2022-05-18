@@ -95,7 +95,7 @@ viewForHeaderInSection:(NSInteger)section{
 #pragma mark —— lazyLoad
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = UITableView.new;
+        _tableView = UITableView.initWithStyleGrouped;
         _tableView.backgroundColor = AppMainCor_02;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         _tableView.showsVerticalScrollIndicator = NO;
