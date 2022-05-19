@@ -10,6 +10,7 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>#pragma mark —— BaseCellProtocol
+/// UITableViewCell
 +(instancetype)cellWithTableView:(UITableView *)tableView{
     CasinoAgencyTBVCell4 *cell = (CasinoAgencyTBVCell4 *)[tableView tableViewCellClass:CasinoAgencyTBVCell4.class];
     if (!cell) {
@@ -21,7 +22,7 @@
         [cell cornerCutToCircleWithCornerRadius:JobsWidth(8)];
     }return cell;
 }
-
+/// UICollectionViewCell
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     JobsHotLabelWithMultiLineCVCell *cell = (JobsHotLabelWithMultiLineCVCell *)[collectionView collectionViewCellClass:JobsHotLabelWithMultiLineCVCell.class forIndexPath:indexPath];
@@ -34,11 +35,11 @@
     return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(void)richElementsInCellWithModel:(id _Nullable)model;
+-(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model;
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGFloat)cellHeightWithModel:(id _Nullable)model;
++(CGFloat)cellHeightWithModel:(UIViewModel *_Nullable)model;
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)cellSizeWithModel:(id _Nullable)model;
++(CGSize)cellSizeWithModel:(UIViewModel *_Nullable)model;
 /// 设置Cell的背景图片
 -(void)setCellBgImage:(UIImage *)bgImage;</string>
 	<key>IDECodeSnippetIdentifier</key>

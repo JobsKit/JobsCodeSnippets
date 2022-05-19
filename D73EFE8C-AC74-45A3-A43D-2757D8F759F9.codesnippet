@@ -20,8 +20,7 @@ BaseViewProtocol
 @property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray &lt;UITableViewCell *&gt;*tbvCellMutArr;
-@property(nonatomic,strong)NSMutableArray *dataMutArr;
-@property(nonatomic,strong)NSMutableArray &lt;NSString *&gt;*dataMutArr;
+@property(nonatomic,strong)NSMutableArray &lt;UIViewModel *&gt;*dataMutArr;
 
 ///下拉刷新 （子类要进行覆写）
 -(void)pullToRefresh{
@@ -96,7 +95,7 @@ viewForHeaderInSection:(NSInteger)section{
 #pragma mark —— lazyLoad
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = UITableView.new;
+        _tableView = UITableView.initWithStyleGrouped;
         _tableView.backgroundColor = AppMainCor_02;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         _tableView.showsVerticalScrollIndicator = NO;
@@ -106,7 +105,7 @@ viewForHeaderInSection:(NSInteger)section{
         _tableView.tableFooterView = UIView.new;
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         _tableView.contentInset = UIEdgeInsetsMake(JobsWidth(20), 0, 0, 0);
-        
+        [_tableView registerTableViewClass];
         if(@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }else{
@@ -182,7 +181,7 @@ viewForHeaderInSection:(NSInteger)section{
     }return _tbvCellMutArr;
 }
 
--(NSMutableArray&lt;NSString *&gt; *)dataMutArr{
+-(NSMutableArray&lt;UIViewModel *&gt; *)dataMutArr{
     if (!_dataMutArr) {
         _dataMutArr = NSMutableArray.array;
     }return _dataMutArr;
@@ -196,7 +195,7 @@ viewForHeaderInSection:(NSInteger)section{
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>创建UITableView</string>
+	<string>创建UITableView的子类</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

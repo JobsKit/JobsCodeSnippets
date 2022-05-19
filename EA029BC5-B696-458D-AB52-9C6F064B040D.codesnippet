@@ -3,25 +3,29 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>RACBtnClickActionEvent</string>
+	<string>Doc_tableHeaderView_tableFooterViewUses</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>@weakify(self)
-[[&lt;#name#&gt; rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-    @strongify(self)
-    
-}];</string>
+	<string>#  tableHeaderView_tableFooterView
+如果想在整个TableView的头部或者尾部出现一个View，注意区别于viewForHeaderInSection
+需要涉及的相关属性
+```
+_tableView.tableHeaderView;
+_tableView.tableFooterView;
+```
+
+</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>A429DFFA-66A4-45D1-B2E2-AAE41973DE0B</string>
+	<string>EA029BC5-B696-458D-AB52-9C6F064B040D</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>RAC按钮点击事件</string>
+	<string>tableHeaderView_tableFooterView的使用</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
