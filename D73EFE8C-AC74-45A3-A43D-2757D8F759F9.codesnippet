@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>CreateUITableView</string>
+	<string>init.UITableView</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -193,9 +193,9 @@ viewForHeaderInSection:(NSInteger)section{
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>创建UITableView的相关子类</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>创建UITableView的子类</string>
+	<string>init.UITableView</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

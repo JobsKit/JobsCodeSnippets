@@ -31,9 +31,9 @@
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
-	<key>IDECodeSnippetTitle</key>
 	<string>分类加【数据】属性Demo</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>CategoryDataProperties</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

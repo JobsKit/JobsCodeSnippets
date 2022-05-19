@@ -3,13 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>CreateBaseCell</string>
+	<string>init.cell</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>#pragma mark —— BaseCellProtocol
+	<string>
+@synthesize viewModel = _viewModel;
+
+#pragma mark —— BaseCellProtocol
 /// UITableViewCell
 +(instancetype)cellWithTableView:(UITableView *)tableView{
     CasinoAgencyTBVCell4 *cell = (CasinoAgencyTBVCell4 *)[tableView tableViewCellClass:CasinoAgencyTBVCell4.class];
@@ -49,9 +52,9 @@
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>基于BaseCellProtocol的TBVCell或者CVCell的创建</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>BaseCellProtocol</string>
+	<string>init.cell</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

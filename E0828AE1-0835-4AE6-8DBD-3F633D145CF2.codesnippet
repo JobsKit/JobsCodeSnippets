@@ -3,13 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>CreateProperty</string>
+	<string>init.property</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>@property(nonatomic,strong)&lt;#type#&gt; *&lt;#name#&gt;;</string>
+	<string>@property(nonatomic,strong)&lt;#type#&gt; *&lt;#name#&gt;;
+@property(nonatomic,assign)&lt;#type#&gt; *&lt;#name#&gt;;
+@property(nonatomic,copy)&lt;#type#&gt; *&lt;#name#&gt;;</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>E0828AE1-0835-4AE6-8DBD-3F633D145CF2</string>
 	<key>IDECodeSnippetLanguage</key>
@@ -17,9 +19,9 @@
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
-	<key>IDECodeSnippetTitle</key>
 	<string>创建属性</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>init.property</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

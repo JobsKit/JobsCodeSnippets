@@ -3,13 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>CreateUICollectionViewCell</string>
+	<string>init.UICollectionViewCell</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>- (instancetype)initWithFrame:(CGRect)frame{
+	<string>
+@synthesize viewModel = _viewModel;
+
+- (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
 
     }return self;
@@ -53,9 +56,9 @@
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>创建UICollectionViewCell的相关子类</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>创建UICollectionViewCell的子类</string>
+	<string>init.UICollectionViewCell</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

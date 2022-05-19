@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>Doc_JXCategoryViewUses</string>
+	<string>init.JXCategoryView</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -400,9 +400,9 @@ PagingViewTableHeaderView.m文件
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>【DOC】JXCategoryView框架的使用</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>JXCategoryView框架的使用</string>
+	<string>init.JXCategoryView</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
