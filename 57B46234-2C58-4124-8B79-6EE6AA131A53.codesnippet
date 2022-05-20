@@ -19,21 +19,6 @@ BaiShaETProjMembersBoardView.h
 @interface BaiShaETProjMembersBoardView : BaseTableViewHeaderView
 
 BaiShaETProjMembersBoardView.m
-#pragma mark —— BaseProtocol
-/// 单例化和销毁
-+(void)destroySingleton{
-    static_membersBoardViewOnceToken = 0;
-    static_membersBoardView = nil;
-}
-
-static BaiShaETProjMembersBoardView *static_membersBoardView = nil;
-static dispatch_once_t static_membersBoardViewOnceToken;
-+(instancetype)sharedInstance{
-    dispatch_once(&amp;static_membersBoardViewOnceToken, ^{
-        static_membersBoardView = BaiShaETProjMembersBoardView.jobsInitWithReuseIdentifier;
-    });return static_membersBoardView;
-}
-
 -(instancetype)init{
     if (self = [super init]) {
         self.backgroundColor = UIColor.whiteColor;
