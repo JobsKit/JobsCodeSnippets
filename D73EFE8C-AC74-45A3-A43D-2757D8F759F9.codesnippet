@@ -46,51 +46,98 @@ BaseViewProtocol
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.tableViewCellMutArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [BaseTableViewCell cellHeightWithModel:Nil];
+    switch (indexPath.section) {
+        case 0:
+            return [BaiShaETProjMembersTBVCell2 cellHeightWithModel:nil];
+            break;
+        case 1:
+        case 2:
+            return [BaiShaETProjMembersTBVCell1 cellHeightWithModel:nil];
+            break;
+        default:
+            return [BaseTableViewCell cellHeightWithModel:nil];
+            break;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.objectBlock) self.objectBlock([tableView cellForRowAtIndexPath:indexPath]);
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
-    return self.dataMutArr.count;
+    return self.tableViewCellMutArr[section].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    BaseTableViewCell *cell = (BaseTableViewCell *)self.tbvCellMutArr[indexPath.row];
-    [cell richElementsInCellWithModel:self.dataMutArr[indexPath.row]];
-    return cell;
+    BaseTableViewCell *cell = (BaseTableViewCell *)self.tableViewCellMutArr[indexPath.section][indexPath.row];
+    switch (indexPath.section) {
+        case 0:
+            [cell richElementsInCellWithModel:nil];
+            break;
+        case 1:
+        case 2:
+            [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section - 1][indexPath.row]];
+            break;
+        default:
+            [cell richElementsInCellWithModel:nil];
+            break;
+    }return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForHeaderInSection:(NSInteger)section{
-    return [DDPersonalCentreHeaderView heightWithModel:nil];
+    return section ? 0 : JobsWidth(10);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView
+heightForFooterInSection:(NSInteger)section{
+    return section ? 0 : JobsWidth(10);
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+//    DDPersonalCentreHeaderView *header = DDPersonalCentreHeaderView.jobsInitWithReuseIdentifier;
+//    [headerView richElementsInViewWithModel:nil];
+//    @weakify(self)
+//    [headerView actionObjectBlock:^(id data) {
+//
+//    }];return headerView;
+    
+    return BaseTableViewHeaderView.new;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return BaseTableViewHeaderView.new;
 }
 
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     [tableView hideSeparatorLineAtLast:indexPath
                                   cell:cell];
-}
-
-- (UIView *)tableView:(UITableView *)tableView
-viewForHeaderInSection:(NSInteger)section{
-    DDPersonalCentreHeaderView *header = DDPersonalCentreHeaderView.jobsInitWithReuseIdentifier;
-    [headerView richElementsInViewWithModel:nil];
-    @weakify(self)
-    [headerView actionObjectBlock:^(id data) {
-
-    }];return headerView;
+    cell.img = KIMG(@"向右的箭头（大）");
+    @jobs_weakify(self)
+    [cell customAccessoryView:^(id data) {
+        @jobs_strongify(self)
+        BaiShaETProjMembersTBVCell1 *cell = (BaiShaETProjMembersTBVCell1 *)data;
+        NSLog(@"MMM - %ld",cell.index);
+    }];
+    
+    [BaseTableViewCell tableView:tableView
+     makeSectionFirstAndLastCell:cell
+                     roundCorner:JobsWidth(8)
+                              dx:JobsWidth(1)
+                              dy:0
+                     atIndexPath:indexPath];
 }
 #pragma mark —— lazyLoad
 -(UITableView *)tableView{
