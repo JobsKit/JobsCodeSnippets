@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>richText</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/*
+ 
+ 示例代码:
+ 特别说明：普通文本和富文本的 左/中/右 段落对齐不是一样的写法
+ 
+ // 关于富文本
+ @property(nonatomic,strong)NSMutableAttributedString *attributedStringData;
+ @property(nonatomic,strong)NSMutableArray &lt;NSString *&gt;*richTextMutArr;
+ @property(nonatomic,strong)NSMutableArray &lt;RichTextConfig *&gt;*richTextConfigMutArr;
+ 
+ -(UILabel *)connectionTipsLab{
+     if (!_connectionTipsLab) {
+         _connectionTipsLab = UILabel.new;
+         _connectionTipsLab.attributedText = self.attributedStringData;
+         [self.view addSubview:_connectionTipsLab];
+         [_connectionTipsLab mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.centerX.equalTo(self.view);
+             make.bottom.equalTo(self.view).offset(JobsWidth(-65));
+             make.height.mas_equalTo(JobsWidth(12));
+         }];
+     }return _connectionTipsLab;
+ }
+
+ -(NSMutableAttributedString *)attributedStringData{
+     if (!_attributedStringData) {
+         _attributedStringData = [self makeAttributedStringWithRichTextMutArr:self.richTextMutArr
+                                                         richTextConfigMutArr:self.richTextConfigMutArr
+                                                               paragraphStyle:nil];
+     }return _attributedStringData;
+ }
+
+ -(NSMutableArray&lt;NSString *&gt; *)richTextMutArr{
+     if (!_richTextMutArr) {
+         _richTextMutArr = NSMutableArray.array;
+         [_richTextMutArr addObject:Internationalization(@"如需帮助，请联系")];
+         [_richTextMutArr addObject:Internationalization(@"专属客服")];
+     }return _richTextMutArr;
+ }
+
+ -(NSMutableArray&lt;RichTextConfig *&gt; *)richTextConfigMutArr{
+     if (!_richTextConfigMutArr) {
+         _richTextConfigMutArr = NSMutableArray.array;
+         
+         RichTextConfig *config_01 = RichTextConfig.new;
+         config_01.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
+         config_01.cor = HEXCOLOR(0x757575);
+         config_01.targetString = self.richTextMutArr[0];
+         [_richTextConfigMutArr addObject:config_01];
+
+         RichTextConfig *config_02 = RichTextConfig.new;
+         config_02.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightMedium];
+         config_02.cor = HEXCOLOR(0xAE8330);
+         config_02.targetString = self.richTextMutArr[1];
+         [_richTextConfigMutArr addObject:config_02];
+         
+     }return _richTextConfigMutArr;
+ }
+ 
+ ***/
+
+/**
+    富文本的属性介绍
+ 
+    NSFontAttributeName                设置字体属性，默认值：字体：Helvetica(Neue) 字号：12
+    NSForegroundColorAttributeNam      设置字体颜色，取值为 UIColor对象，默认值为黑色
+    NSBackgroundColorAttributeName     设置字体所在区域背景颜色，取值为 UIColor对象，默认值为nil, 透明色
+    NSLigatureAttributeName            设置连体属性，取值为NSNumber 对象(整数)，0 表示没有连体字符，1 表示使用默认的连体字符
+    NSKernAttributeName                设定字符间距，取值为 NSNumber 对象（整数），正值间距加宽，负值间距变窄
+    NSStrikethroughStyleAttributeName  设置删除线，取值为 NSNumber 对象（整数）
+    NSStrikethroughColorAttributeName  设置删除线颜色，取值为 UIColor 对象，默认值为黑色
+    NSUnderlineStyleAttributeName      设置下划线，取值为 NSNumber 对象（整数），枚举常量 NSUnderlineStyle中的值，与删除线类似
+    NSUnderlineColorAttributeName      设置下划线颜色，取值为 UIColor 对象，默认值为黑色
+    NSStrokeWidthAttributeName         设置笔画宽度，取值为 NSNumber 对象（整数），负值填充效果，正值中空效果
+    NSStrokeColorAttributeName         填充部分颜色，不是字体颜色，取值为 UIColor 对象
+    NSShadowAttributeName              设置阴影属性，取值为 NSShadow 对象
+    NSTextEffectAttributeName          设置文本特殊效果，取值为 NSString 对象，目前只有图版印刷效果可用：
+    NSBaselineOffsetAttributeName      设置基线偏移值，取值为 NSNumber （float）,正值上偏，负值下偏
+    NSObliquenessAttributeName         设置字形倾斜度，取值为 NSNumber （float）,正值右倾，负值左倾
+    NSExpansionAttributeName           设置文本横向拉伸属性，取值为 NSNumber （float）,正值横向拉伸文本，负值横向压缩文本
+    NSWritingDirectionAttributeName    设置文字书写方向，从左向右书写或者从右向左书写
+    NSVerticalGlyphFormAttributeName   设置文字排版方向，取值为 NSNumber 对象(整数)，0 表示横排文本，1 表示竖排文本
+    NSLinkAttributeName                设置链接属性，点击后调用浏览器打开指定URL地址
+    NSAttachmentAttributeName          设置文本附件,取值为NSTextAttachment对象,常用于文字图片混排
+    NSParagraphStyleAttributeName      设置文本段落排版格式，取值为 NSParagraphStyle 对象
+ **/
+
+/**
+    富文本段落排版格式属性介绍
+ 
+    lineSpacing 字体的行间距
+    firstLineHeadIndent  首行缩进
+    alignment （两端对齐的）文本对齐方式：（左，中，右，两端对齐，自然）
+    lineBreakMode 结尾部分的内容以……方式省略 ( "...wxyz" ,"abcd..." ,"ab...yz")
+    headIndent 整体缩进(首行除外)
+    tailIndent
+    minimumLineHeight 最低行高
+    maximumLineHeight 最大行高
+    paragraphSpacing 段与段之间的间距
+    paragraphSpacingBefore 段首行空白空间
+    baseWritingDirection 书写方向（一共三种）
+    lineHeightMultiple
+    hyphenationFactor 连字属性 在iOS，唯一支持的值分别为0和1
+ **/
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>7F4297A6-6D0E-49DF-8561-7F635F3625A6</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>富文本</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>init.richText</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
