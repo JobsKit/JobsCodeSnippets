@@ -101,21 +101,32 @@ heightForHeaderInSection:(NSInteger)section{
 heightForFooterInSection:(NSInteger)section{
     return section ? 0 : JobsWidth(10);
 }
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-//    DDPersonalCentreHeaderView *header = DDPersonalCentreHeaderView.jobsInitWithReuseIdentifier;
-//    [headerView richElementsInViewWithModel:nil];
-//    @weakify(self)
-//    [headerView actionObjectBlock:^(id data) {
-//
-//    }];return headerView;
-    
-    return BaseTableViewHeaderView.new;
+/// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
+- (UIView *)tableView:(UITableView *)tableView
+viewForHeaderInSection:(NSInteger)section{
+    if (self.viewModel.usesTableViewHeaderFooterView) {
+        BaseTableViewHeaderView *headerView = BaseTableViewHeaderView.jobsInitWithReuseIdentifier;
+        headerView.section = section;
+        [headerView richElementsInViewWithModel:nil];
+        @jobs_weakify(self)
+        [headerView actionObjectBlock:^(id data) {
+            @jobs_strongify(self)
+        }];return headerView;
+    }return nil;
 }
-
-- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    return BaseTableViewHeaderView.new;
+/// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
+- (nullable UIView *)tableView:(UITableView *)tableView
+        viewForFooterInSection:(NSInteger)section{
+    BaseTableViewFooterView *tbvFooterView = BaseTableViewFooterView.jobsInitWithReuseIdentifier;
+    tbvFooterView.section = section;
+    tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
+    tbvFooterView.contentView.backgroundColor = HEXCOLOR(0xEAEBED);
+    
+    [tbvFooterView richElementsInViewWithModel:nil];
+    @jobs_weakify(self)
+    [tbvFooterView actionObjectBlock:^(id data) {
+        @jobs_strongify(self)
+    }];return tbvFooterView;
 }
 
 - (void)tableView:(UITableView *)tableView
@@ -148,8 +159,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.tableHeaderView = UIView.new;
-        _tableView.tableFooterView = UIView.new;
+        _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
+        _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         _tableView.contentInset = UIEdgeInsetsMake(JobsWidth(20), 0, 0, 0);
         [_tableView registerTableViewClass];
