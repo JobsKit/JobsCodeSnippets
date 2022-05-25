@@ -194,8 +194,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         
         {
             _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
-                                                                titleStr:@"暂无数据"
-                                                               detailStr:@""];
+                                                                titleStr:Internationalization(@"暂无数据")
+                                                               detailStr:Internationalization(@"")];
             
             _tableView.ly_emptyView.titleLabTextColor = KLightGrayColor;
             _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);
