@@ -134,6 +134,11 @@ CGFloat categoryViewHeight = JobsWidth(54);
             
         }];
         [self.view layoutIfNeeded];
+        
+        /// ❤️在需要的地方写❤️
+        NSNumber *currentIndex = [self.listContainerView valueForKey:@"currentIndex"];
+        NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
+        
     }return _listContainerView;
 }
 
@@ -193,12 +198,12 @@ CGFloat categoryViewHeight = JobsWidth(54);
     return self.childVCMutArr[index];
 }
 #pragma mark JXCategoryViewDelegate
-//传递didClickSelectedItemAt事件给listContainerView，必须调用！！！
+///【点击的结果】传递didClickSelectedItemAt事件给listContainerView，必须调用！！！
 - (void)categoryView:(JXCategoryBaseView *)categoryView
 didClickSelectedItemAtIndex:(NSInteger)index {
      [self.listContainerView didClickSelectedItemAtIndex:index];
 }
-
+///【滑动的结果】
 - (void)categoryView:(JXCategoryBaseView *)categoryView
 didScrollSelectedItemAtIndex:(NSInteger)index{}
 //传递scrolling事件给listContainerView，必须调用！！！

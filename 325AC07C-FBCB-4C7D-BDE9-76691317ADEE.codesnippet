@@ -142,18 +142,30 @@ UICollectionViewDataSource
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
     if (kind == UICollectionElementKindSectionHeader) {
-        UBLSearchCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-                                                                                         withReuseIdentifier:NSStringFromClass(UBLSearchCollectionReusableView.class)
-                                                                                                forIndexPath:indexPath];
+        JobsHotLabelWithMultiLineHeaderView * headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHotLabelWithMultiLineHeaderView.class
+                                                                                                        forIndexPath:indexPath];
         
-//        headerView.isShowMoreBtn = YES;
-
-//        headerView.img =
-        headerView.titleStr = @"独家情报";
+        UIViewModel *viewModel = UIViewModel.new;
+        viewModel.textModel.text = Internationalization(@"独家情报");
+        
+        [headerView richElementsInViewWithModel:viewModel];
         
         return headerView;
+    }else if (kind == UICollectionElementKindSectionFooter) {
+        JobsHotLabelWithMultiLineFooterView *footerView = [collectionView UICollectionElementKindSectionFooterClass:JobsHotLabelWithMultiLineFooterView.class
+                                                                                                       forIndexPath:indexPath];
+
+        UIViewModel *viewModel = UIViewModel.new;
+        viewModel.textModel.text = Internationalization(@"点击详情");
+
+        [footerView richElementsInViewWithModel:viewModel];
+
+        return footerView;
     }else{
-        return nil;
+        BaseCollectionReusableView *collectionReusableView = [collectionView UICollectionElementKindSectionHeaderClass:BaseCollectionReusableView.class
+                                                                                                          forIndexPath:indexPath];
+        
+        return collectionReusableView;
     }
 }
 #pragma mark —— UICollectionViewDelegate
