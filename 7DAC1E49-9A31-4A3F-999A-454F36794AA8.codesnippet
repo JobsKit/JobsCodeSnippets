@@ -21,6 +21,9 @@
         self.viewModel = (UIViewModel *)self.requestParams;
     }
     self.setupNavigationBarHidden = YES;
+    
+    // self.viewModel.textModel.text = Internationalization(@"额度记录");
+    // self.bgImage = nil;
 }
 
 - (void)viewDidLoad {

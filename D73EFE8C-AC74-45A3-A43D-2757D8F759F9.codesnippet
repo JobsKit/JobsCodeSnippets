@@ -104,7 +104,7 @@ heightForFooterInSection:(NSInteger)section{
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
 - (UIView *)tableView:(UITableView *)tableView
 viewForHeaderInSection:(NSInteger)section{
-    if (self.viewModel.usesTableViewHeaderFooterView) {
+    if (self.viewModel.usesTableViewHeaderView) {
         BaseTableViewHeaderView *headerView = BaseTableViewHeaderView.jobsInitWithReuseIdentifier;
         headerView.section = section;
         [headerView richElementsInViewWithModel:nil];
@@ -117,16 +117,18 @@ viewForHeaderInSection:(NSInteger)section{
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
 - (nullable UIView *)tableView:(UITableView *)tableView
         viewForFooterInSection:(NSInteger)section{
-    BaseTableViewFooterView *tbvFooterView = BaseTableViewFooterView.jobsInitWithReuseIdentifier;
-    tbvFooterView.section = section;
-    tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
-    tbvFooterView.contentView.backgroundColor = HEXCOLOR(0xEAEBED);
-    
-    [tbvFooterView richElementsInViewWithModel:nil];
-    @jobs_weakify(self)
-    [tbvFooterView actionObjectBlock:^(id data) {
-        @jobs_strongify(self)
-    }];return tbvFooterView;
+    if(self.viewModel.usesTableViewFooterView){
+        BaseTableViewFooterView *tbvFooterView = BaseTableViewFooterView.jobsInitWithReuseIdentifier;
+        tbvFooterView.section = section;
+        tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
+        tbvFooterView.contentView.backgroundColor = HEXCOLOR(0xEAEBED);
+        
+        [tbvFooterView richElementsInViewWithModel:nil];
+        @jobs_weakify(self)
+        [tbvFooterView actionObjectBlock:^(id data) {
+            @jobs_strongify(self)
+        }];return tbvFooterView;
+    }return nil;
 }
 
 - (void)tableView:(UITableView *)tableView
