@@ -46,6 +46,10 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
 }
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+}
 #pragma mark —— lazyLoad</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>7DAC1E49-9A31-4A3F-999A-454F36794AA8</string>

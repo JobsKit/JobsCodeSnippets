@@ -63,7 +63,7 @@ CGFloat categoryViewHeight = JobsWidth(54);
         [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.infoBoardView.mas_bottom).offset(0);
             make.left.right.equalTo(self.view);
-            make.height.mas_equalTo(categoryViewHeight);
+            make.height.mas_equalTo(listContainerViewDefaultOffset);
         }];
         [self.view layoutIfNeeded];
     }return _categoryView;
