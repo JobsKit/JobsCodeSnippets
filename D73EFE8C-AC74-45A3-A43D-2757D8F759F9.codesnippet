@@ -106,7 +106,7 @@ heightForFooterInSection:(NSInteger)section{
 viewForHeaderInSection:(NSInteger)section{
     if (self.viewModel.usesTableViewHeaderView) {
         BaseTableViewHeaderView *headerView = BaseTableViewHeaderView.jobsInitWithReuseIdentifier;
-        headerView.section = section;
+        headerView.section = section;// 不写这一句有悬浮
         [headerView richElementsInViewWithModel:nil];
         @jobs_weakify(self)
         [headerView actionObjectBlock:^(id data) {
@@ -119,7 +119,7 @@ viewForHeaderInSection:(NSInteger)section{
         viewForFooterInSection:(NSInteger)section{
     if(self.viewModel.usesTableViewFooterView){
         BaseTableViewFooterView *tbvFooterView = BaseTableViewFooterView.jobsInitWithReuseIdentifier;
-        tbvFooterView.section = section;
+        tbvFooterView.section = section;// 不写这一句有悬浮
         tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
         tbvFooterView.contentView.backgroundColor = HEXCOLOR(0xEAEBED);
         

@@ -39,6 +39,16 @@
 
 }
 
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    NSLog(@"");
+}
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    NSLog(@"");
+}
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
 }

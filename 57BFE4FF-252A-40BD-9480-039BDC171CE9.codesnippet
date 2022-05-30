@@ -25,18 +25,6 @@
         [cell cornerCutToCircleWithCornerRadius:JobsWidth(8)];
     }return cell;
 }
-/// UICollectionViewCell
-+(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
-                         forIndexPath:(nonnull NSIndexPath *)indexPath{
-    JobsHotLabelWithMultiLineCVCell *cell = (JobsHotLabelWithMultiLineCVCell *)[collectionView collectionViewCellClass:JobsHotLabelWithMultiLineCVCell.class forIndexPath:indexPath];
-    if (!cell) {
-        [collectionView registerCollectionViewCellClass:JobsHotLabelWithMultiLineCVCell.class];
-        cell = (JobsHotLabelWithMultiLineCVCell *)[collectionView collectionViewCellClass:JobsHotLabelWithMultiLineCVCell.class forIndexPath:indexPath];
-    }
-    
-    cell.indexPath = indexPath;
-    return cell;
-}
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model;
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -52,9 +40,9 @@
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>基于BaseCellProtocol的TBVCell或者CVCell的创建</string>
+	<string>基于BaseCellProtocol的TBVCell创建</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>init.cell</string>
+	<string>init.TableViewCell</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

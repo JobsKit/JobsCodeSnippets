@@ -56,7 +56,7 @@
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>创建UICollectionViewCell的相关子类</string>
+	<string>基于BaseCellProtocol的UICollectionViewCell创建</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>init.UICollectionViewCell</string>
 	<key>IDECodeSnippetUserSnippet</key>
