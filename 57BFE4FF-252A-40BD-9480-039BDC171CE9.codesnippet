@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>init.cell</string>
+	<string>init.UITableViewCell</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -42,7 +42,7 @@
 	<key>IDECodeSnippetSummary</key>
 	<string>基于BaseCellProtocol的TBVCell创建</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>init.TableViewCell</string>
+	<string>init.UITableViewCell</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
