@@ -214,6 +214,20 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         
         [self.view addSubview:_tableView];
         [self fullScreenConstraintTargetView:_tableView];
+        
+        /// 判断是否是子类，如果是子类则不调用。
+        /// 因为这里懒加载了约束，子类调用这个属性再进行二次约束会出现一些刷新异常
+        /// 比如在子类 mas_updateConstraints和mas_remakeConstraints 刷新约束均异常
+        if (self.class == 本类的类名.class) {
+            [self dataLinkByTableView:_tableView];
+            [self layoutIfNeeded];// 数据链接了以后有Frame直接走协议；如果先有frame再链接数据，则不走协议
+            [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(10));
+                make.left.equalTo(self.contentView).offset(JobsWidth(24));
+                make.right.equalTo(self.contentView).offset(JobsWidth(-24));
+                make.height.mas_equalTo(子TableViewCell的高度 * self.dataMutArr.vm1.count + JobsWidth(5));
+            }];
+        }
     }return _tableView;
 }
 
