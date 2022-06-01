@@ -94,12 +94,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForHeaderInSection:(NSInteger)section{
-    return section ? 0 : JobsWidth(10);
+    return section ? [BaseTableViewFooterView heightForHeaderInSection:nil]; : JobsWidth(10);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForFooterInSection:(NSInteger)section{
-    return section ? 0 : JobsWidth(10);
+    return section ? [BaseTableViewFooterView heightForFooterInSection:nil]; : JobsWidth(10);
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
 - (UIView *)tableView:(UITableView *)tableView
