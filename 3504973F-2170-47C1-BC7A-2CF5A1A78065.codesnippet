@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>init.JXCategoryView</string>
+	<string>init.JXCategoryView.normal</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -31,18 +31,7 @@ JXCategoryTitleViewDataSource
 ,JXCategoryListContainerViewDelegate
 ,JXCategoryViewDelegate
 &gt;
-
-CGFloat categoryViewHeight = JobsWidth(54);
-
 ============================== 方式一 ============================== 
-// UI
-@property(nonatomic,strong)JXCategoryTitleView *categoryView;
-@property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
-@property(nonatomic,strong)JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
-// Data
-@property(nonatomic,strong)NSMutableArray &lt;NSString *&gt;*titleMutArr;
-@property(nonatomic,strong)NSMutableArray &lt;UIViewController *&gt;*childVCMutArr;
-
 -(JXCategoryTitleView *)categoryView{
     if (!_categoryView) {
         _categoryView = JXCategoryTitleView.new;
@@ -69,15 +58,6 @@ CGFloat categoryViewHeight = JobsWidth(54);
     }return _categoryView;
 }
 ============================== 方式二 ============================== 
-// UI
-@property(nonatomic,strong)JXCategoryImageView *categoryView;
-@property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
-@property(nonatomic,strong)JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
-// Data
-@property(nonatomic,strong)NSMutableArray &lt;UIViewController *&gt;*childVCMutArr;
-@property(nonatomic,strong)NSMutableArray &lt;NSString *&gt;*imageNames;
-@property(nonatomic,strong)NSMutableArray &lt;NSString *&gt;*selectedImageNames;
-
 -(JXCategoryImageView *)categoryView{
     if (!_categoryView) {
         _categoryView = JXCategoryImageView.new;
@@ -105,12 +85,57 @@ CGFloat categoryViewHeight = JobsWidth(54);
         [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.infoBoardView.mas_bottom).offset(0);
             make.left.right.equalTo(self.view);
-            make.height.mas_equalTo(categoryViewHeight);
+            make.height.mas_equalTo(listContainerViewDefaultOffset);
         }];
         [self.view layoutIfNeeded];
     }return _categoryView;
 }
+============================== 方式三 ==============================
+-(JXCategoryDotView *)categoryTitleView{
+    if (!_categoryTitleView) {
+        _categoryTitleView = JXCategoryDotView.new;
+        _categoryTitleView.delegate = self;
+        _categoryTitleView.dotStates = self.dotStatesMutArr;
+        _categoryTitleView.titles = self.titleMutArr;
+        _categoryTitleView.indicators = @[self.lineView];
+        _categoryTitleView.backgroundColor = HEXCOLOR(0xFCFBFB);
+        _categoryTitleView.titleSelectedColor = HEXCOLOR(0xAE8330);
+        _categoryTitleView.titleColor = HEXCOLOR(0xC4C4C4);
+        _categoryTitleView.titleFont = notoSansRegular(12);
+        _categoryTitleView.titleSelectedFont = notoSansRegular(12);
+        _categoryTitleView.defaultSelectedIndex = 1;//默认从第二个开始显示
+        _categoryTitleView.titleColorGradientEnabled = YES;
+//        _categoryTitleView.titleLabelZoomEnabled = YES;//默认为NO。为YES时titleSelectedFont失效，以titleFont为准。这句话貌似有点问题，等作者回复
+        _categoryTitleView.listContainer = self.listContainerView;
+        _categoryTitleView.dotSize = CGSizeMake(JobsWidth(5), JobsWidth(5));
+        // 关联cotentScrollView，关联之后才可以互相联动！！！
+        _categoryTitleView.contentScrollView = self.listContainerView.scrollView;
+        [_categoryTitleView reloadDataWithoutListContainer];
+        [self.view addSubview:_categoryTitleView];
+        [_categoryTitleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.topLineLab.mas_bottom);
+            make.left.right.equalTo(self.view);
+            make.height.mas_equalTo(listContainerViewDefaultOffset);
+        }];
+    }return _categoryTitleView;
+}
 ==================================== 公共部分 ====================================
+#ifndef listContainerViewDefaultOffset
+#define listContainerViewDefaultOffset JobsWidth(50)
+#endif
+// UI
+/// 3 选 1
+@property(nonatomic,strong)JXCategoryTitleView *categoryView;/// 文字
+@property(nonatomic,strong)JXCategoryImageView *categoryView;/// 纯图
+@property(nonatomic,strong)JXCategoryDotView *categoryView;/// 右上角带红点
+@property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
+@property(nonatomic,strong)JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
+// Data
+@property(nonatomic,strong)NSMutableArray &lt;NSString *&gt;*titleMutArr;
+@property(nonatomic,strong)NSMutableArray &lt;NSString *&gt;*imageNames;
+@property(nonatomic,strong)NSMutableArray &lt;NSString *&gt;*selectedImageNames;
+@property(nonatomic,strong)NSMutableArray &lt;UIViewController *&gt;*childVCMutArr;
+
 -(JXCategoryIndicatorLineView *)lineView{
     if (!_lineView) {
         _lineView = JXCategoryIndicatorLineView.new;
@@ -224,188 +249,6 @@ scrollingFromLeftIndex:(NSInteger)leftIndex
 //                                             ratio:ratio
 //                                     selectedIndex:categoryView.selectedIndex];
 }
-
-```
-## 下拉headerView变大 + 红点提示 
-```
-&lt;
-JXPagerViewDelegate,
-JXCategoryViewDelegate
-&gt;
-/// UI
-@property(nonatomic,strong)PagingViewTableHeaderView *userHeaderView;
-@property(nonatomic,strong)JXPagerView *pagingView;
-@property(nonatomic,strong)JXCategoryDotView *categoryTitleView;
-@property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;
-/// Data
-@property(nonatomic,strong)NSMutableArray &lt;UIViewController *&gt;*childVCsMutArr;
-@property(nonatomic,strong)NSMutableArray &lt;NSString *&gt; *titlesMutArr;
-@property(nonatomic,strong)NSMutableArray &lt;NSNumber *&gt;*dotStatesMutArr;
-
--(NSMutableArray&lt;UIViewController *&gt; *)childVCsMutArr{
-    if (!_childVCsMutArr) {
-        _childVCsMutArr = NSMutableArray.array;
-        [_childVCsMutArr addObject:DynamicVC.new];
-        [_childVCsMutArr addObject:ForecastVC.new];
-        [_childVCsMutArr addObject:VideoVC.new];
-        [_childVCsMutArr addObject:ReleaseVC.new];
-        [_childVCsMutArr addObject:CommentVC.new];
-    }return _childVCsMutArr;
-}
-
--(NSMutableArray&lt;NSString *&gt; *)titlesMutArr{
-    if (!_titlesMutArr) {
-        _titlesMutArr = NSMutableArray.array;
-        [_titlesMutArr addObject:@"动态"];
-        [_titlesMutArr addObject:@"预测"];
-        [_titlesMutArr addObject:@"录像"];
-        [_titlesMutArr addObject:@"发布"];
-        [_titlesMutArr addObject:@"评论"];
-    }return _titlesMutArr;
-}
-
--(PagingViewTableHeaderView *)userHeaderView{
-    if (!_userHeaderView) {
-        _userHeaderView = PagingViewTableHeaderView.new;
-        _userHeaderView.frame = CGRectMake(0, 0, JobsMainScreen_WIDTH(), JXTableHeaderViewHeight);
-        _userHeaderView.isZoom = YES;
-    }return _userHeaderView;
-}
-
--(JXCategoryDotView *)categoryTitleView{
-    if (!_categoryTitleView) {
-        _categoryTitleView = JXCategoryDotView.new;
-        _categoryTitleView.mj_w = JobsMainScreen_WIDTH();
-        _categoryTitleView.mj_h = JXheightForHeaderInSection;
-        _categoryTitleView.backgroundColor = kWhiteColor;
-        _categoryTitleView.titles = self.titlesMutArr;
-        _categoryTitleView.indicators = @[self.lineView];
-        _categoryTitleView.delegate = self;
-        _categoryTitleView.dotStates = self.dotStatesMutArr;
-        _categoryTitleView.titleSelectedColor = RGB_COLOR(105,
-                                                         144,
-                                                         239);
-        _categoryTitleView.titleColor = kBlackColor;
-        _categoryTitleView.titleFont = [UIFont systemFontOfSize:14
-                                                         weight:UIFontWeightMedium];
-        _categoryTitleView.listContainer = (id&lt;JXCategoryViewListContainer&gt;)self.pagingView.listContainerView;
-        _categoryTitleView.defaultSelectedIndex = 1;//默认从第二个开始显示
-        _categoryTitleView.titleColorGradientEnabled = YES;
-        _categoryTitleView.titleLabelZoomEnabled = YES;
-        [self.view addSubview:_categoryTitleView];
-    }return _categoryTitleView;
-}
-
--(JXCategoryIndicatorLineView *)lineView{
-    if (!_lineView) {
-        _lineView = JXCategoryIndicatorLineView.new;
-        _lineView.indicatorColor = RGB_COLOR(105, 144, 239);
-        _lineView.indicatorWidth = 30;
-    }return _lineView;
-}
-
--(JXPagerView *)pagingView{
-    if (!_pagingView) {
-        _pagingView = [[JXPagerView alloc] initWithDelegate:self];
-        [self.view addSubview:_pagingView];
-        _pagingView.frame = self.view.bounds;
-    }return _pagingView;
-}
-
--(NSMutableArray&lt;NSNumber *&gt; *)dotStatesMutArr{
-    if (!_dotStatesMutArr) {
-        _dotStatesMutArr = NSMutableArray.array;
-        [_dotStatesMutArr addObject:@YES];
-        [_dotStatesMutArr addObject:@NO];
-        [_dotStatesMutArr addObject:@YES];
-        [_dotStatesMutArr addObject:@NO];
-        [_dotStatesMutArr addObject:@YES];
-    }return _dotStatesMutArr;
-}
-
-#pragma mark - JXPagingViewDelegate
-- (UIView *)tableHeaderViewInPagerView:(JXPagerView *)pagerView {
-    return self.userHeaderView;
-}
-
-- (NSUInteger)tableHeaderViewHeightInPagerView:(JXPagerView *)pagerView {
-    return JXTableHeaderViewHeight;
-}
-
-- (NSUInteger)heightForPinSectionHeaderInPagerView:(JXPagerView *)pagerView {
-    return JXheightForHeaderInSection;
-}
-
-- (UIView *)viewForPinSectionHeaderInPagerView:(JXPagerView *)pagerView {
-    return self.categoryTitleView;
-}
-
-- (NSInteger)numberOfListsInPagerView:(JXPagerView *)pagerView {
-    return self.titlesMutArr.count;
-}
-
-- (id&lt;JXPagerViewListViewDelegate&gt;)pagerView:(JXPagerView *)pagerView
-                             initListAtIndex:(NSInteger)index {
-    return self.childVCsMutArr[index];
-}
-
-- (void)pagerView:(JXPagerView *)pagerView
-mainTableViewDidScroll:(UIScrollView *)scrollView{
-    [self.userHeaderView scrollViewDidScroll:scrollView.contentOffset.y];
-}
-#pragma mark - JXCategoryViewDelegate
-- (void)categoryView:(JXCategoryBaseView *)categoryView
-didSelectedItemAtIndex:(NSInteger)index {
-    self.navigationController.interactivePopGestureRecognizer.enabled = (index == 0);
-    //点击以后红点消除
-    if ([self.dotStatesMutArr[index] boolValue]) {
-        self.dotStatesMutArr[index] = @(NO);
-        self.categoryTitleView.dotStates = self.dotStatesMutArr;
-        [categoryView reloadCellAtIndex:index];
-    }
-}
-
-```
-
-关于PagingViewTableHeaderView
-```
-PagingViewTableHeaderView.h文件
-
-定义:
--(void)scrollViewDidScroll:(CGFloat)contentOffsetY;
-
-PagingViewTableHeaderView.m文件
-
-@property(nonatomic,strong)UIImageView *imageView;
-@property(nonatomic,assign)CGRect imageViewFrame;
-
-- (void)scrollViewDidScroll:(CGFloat)contentOffsetY {
-    if (self.isZoom) {
-        CGRect frame = self.imageViewFrame;
-        frame.size.height -= contentOffsetY;
-        frame.origin.y = contentOffsetY;
-        self.imageView.frame = frame;
-    }
-}
-
--(UIImageView *)imageView{
-    if (!_imageView) {
-        _imageView = UIImageView.new;
-        _imageView.image = KIMG(@"lufei.jpg");
-        _imageView.clipsToBounds = YES;
-        _imageView.contentMode = UIViewContentModeScaleAspectFill;
-        [self addSubview:_imageView];
-        if (self.isZoom) {
-            _imageView.frame = CGRectMake(0, 0, self.mj_w, self.mj_h);
-            self.imageViewFrame = _imageView.frame;
-        }else{
-            [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self);
-            }];
-        }
-    }return _imageView;
-}
-```
 </string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>3504973F-2170-47C1-BC7A-2CF5A1A78065</string>
@@ -414,7 +257,7 @@ PagingViewTableHeaderView.m文件
 	<key>IDECodeSnippetSummary</key>
 	<string>【DOC】JXCategoryView框架的使用</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>init.JXCategoryView</string>
+	<string>init.JXCategoryView.normal</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
