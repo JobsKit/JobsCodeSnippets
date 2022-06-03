@@ -119,15 +119,52 @@ JXCategoryTitleViewDataSource
         }];
     }return _categoryTitleView;
 }
+============================== 方式四 ==============================
+-(JXCategoryNumberView *)categoryTitleView{
+    if (!_categoryTitleView) {
+        _categoryTitleView = JXCategoryNumberView.new;
+        _categoryTitleView.delegate = self;
+        _categoryTitleView.titles = self.titleMutArr;
+        _categoryTitleView.indicators = @[self.lineView];
+        _categoryTitleView.backgroundColor = HEXCOLOR(0xFCFBFB);
+        _categoryTitleView.titleSelectedColor = HEXCOLOR(0xAE8330);
+        _categoryTitleView.titleColor = HEXCOLOR(0xC4C4C4);
+        _categoryTitleView.titleFont = notoSansRegular(12);
+        _categoryTitleView.titleSelectedFont = notoSansRegular(12);
+        _categoryTitleView.defaultSelectedIndex = 1;//默认从第二个开始显示
+        _categoryTitleView.titleColorGradientEnabled = YES;
+//        _categoryTitleView.titleLabelZoomEnabled = YES;//默认为NO。为YES时titleSelectedFont失效，以titleFont为准。这句话貌似有点问题，等作者回复
+        _categoryTitleView.listContainer = self.listContainerView;
+        _categoryTitleView.counts = self.numberMutArr;
+        _categoryTitleView.numberLabelOffset = CGPointMake(JobsWidth(5), JobsWidth(2));
+        /// 内部默认不会格式化数字，直接转成字符串显示。比如业务需要数字超过999显示999+，可以通过该block实现。
+        _categoryTitleView.numberStringFormatterBlock = ^NSString *(NSInteger number) {
+            if (number &gt; 999) {
+                return @"999+";
+            }
+            return [NSString stringWithFormat:@"%ld", (long)number];
+        };
+        /// 关联cotentScrollView，关联之后才可以互相联动！！！
+        _categoryTitleView.contentScrollView = self.listContainerView.scrollView;
+        [_categoryTitleView reloadDataWithoutListContainer];
+        [self.view addSubview:_categoryTitleView];
+        [_categoryTitleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.topLineLab.mas_bottom);
+            make.left.right.equalTo(self.view);
+            make.height.mas_equalTo(listContainerViewDefaultOffset);
+        }];
+    }return _categoryTitleView;
+}
 ==================================== 公共部分 ====================================
 #ifndef listContainerViewDefaultOffset
 #define listContainerViewDefaultOffset JobsWidth(50)
 #endif
 // UI
-/// 3 选 1
+/// N 选 1
 @property(nonatomic,strong)JXCategoryTitleView *categoryView;/// 文字
 @property(nonatomic,strong)JXCategoryImageView *categoryView;/// 纯图
 @property(nonatomic,strong)JXCategoryDotView *categoryView;/// 右上角带红点
+@property(nonatomic,strong)JXCategoryNumberView *categoryView;/// 右上角带文字
 @property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
 @property(nonatomic,strong)JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
 // Data
