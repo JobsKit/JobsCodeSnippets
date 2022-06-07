@@ -22,8 +22,12 @@
     }
     self.setupNavigationBarHidden = YES;
     
-    // self.viewModel.textModel.text = Internationalization(@"额度记录");
-    // self.bgImage = nil;
+//    self.viewModel.backBtnTitleModel.text = @"";
+//    self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
+//    self.viewModel.textModel.text = Internationalization(@"消息详情页");
+//    self.viewModel.textModel.font = notoSansBold(16);
+//    
+//    self.bgImage = nil;
 }
 
 - (void)viewDidLoad {
