@@ -32,7 +32,17 @@
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)cellSizeWithModel:(UIViewModel *_Nullable)model;
 /// 设置Cell的背景图片
--(void)setCellBgImage:(UIImage *)bgImage;</string>
+-(void)setCellBgImage:(UIImage *)bgImage;
+#pragma mark —— 子类重写父类方法
+-(void)setFrame:(CGRect)frame{
+    NSLog(@"self.offsetXForEach = %f",self.offsetXForEach);
+    NSLog(@"self.offsetYForEach = %f",self.offsetYForEach);
+    frame.origin.x += self.offsetXForEach;
+    frame.origin.y += self.offsetYForEach;
+    frame.size.height -= self.offsetYForEach * 2;
+    frame.size.width -= self.offsetXForEach * 2;
+    [super setFrame:frame];
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>57BFE4FF-252A-40BD-9480-039BDC171CE9</string>
 	<key>IDECodeSnippetLanguage</key>
