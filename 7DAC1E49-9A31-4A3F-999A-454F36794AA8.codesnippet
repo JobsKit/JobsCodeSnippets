@@ -36,6 +36,7 @@
     self.view.backgroundColor = KYellowColor;
     [self setGKNav];
     [self setGKNavBackBtn];
+    self.gk_navigationBar.jobsVisible = NO;
 }
 
 -(void)viewWillAppear:(BOOL)animated{

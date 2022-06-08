@@ -45,6 +45,22 @@ BaseViewProtocol
     [self pullToRefresh];
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
+- (void)tableView:(UITableView*)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath*)indexPath{
+    
+}
+
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+/// 编辑模式下，点击取消左边已选中的cell的按钮
+- (void)tableView:(UITableView *)tableView
+didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.tableViewCellMutArr.count;
 }
@@ -63,11 +79,6 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             return [BaseTableViewCell cellHeightWithModel:nil];
             break;
     }
-}
-
-- (void)tableView:(UITableView *)tableView
-didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
@@ -147,10 +158,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [BaseTableViewCell tableView:tableView
      makeSectionFirstAndLastCell:cell
-                     roundCorner:JobsWidth(8)
-                              dx:JobsWidth(1)
-                              dy:0
-                     atIndexPath:indexPath];
+                     atIndexPath:indexPath
+                       cellBgCor:HEXCOLOR(0xFFFFFF)
+                   bottomLineCor:HEXCOLOR(0xFFFFFF)
+                  cellOutLineCor:HEXCOLOR(0xFFFFFF)
+                     roundCorner:JobsWidth(10)
+                              dx:0
+                              dy:0];
 }
 #pragma mark —— lazyLoad
 -(UITableView *)tableView{
