@@ -91,6 +91,8 @@ JXCategoryTitleViewDataSource
     }return _categoryView;
 }
 ============================== 方式三 ==============================
+@property(nonatomic,strong)NSMutableArray &lt;NSNumber *&gt;*dotStatesMutArr;
+
 -(JXCategoryDotView *)categoryTitleView{
     if (!_categoryTitleView) {
         _categoryTitleView = JXCategoryDotView.new;
@@ -118,6 +120,28 @@ JXCategoryTitleViewDataSource
             make.height.mas_equalTo(listContainerViewDefaultOffset);
         }];
     }return _categoryTitleView;
+}
+
+-(NSMutableArray&lt;NSNumber *&gt; *)dotStatesMutArr{
+    if (!_dotStatesMutArr) {
+        _dotStatesMutArr = NSMutableArray.array;
+        [_dotStatesMutArr addObject:@YES];
+        [_dotStatesMutArr addObject:@NO];
+        [_dotStatesMutArr addObject:@YES];
+        [_dotStatesMutArr addObject:@NO];
+        [_dotStatesMutArr addObject:@YES];
+    }return _dotStatesMutArr;
+}
+
+- (void)categoryView:(JXCategoryBaseView *)categoryView
+didSelectedItemAtIndex:(NSInteger)index {
+    self.navigationController.interactivePopGestureRecognizer.enabled = (index == 0);
+    //点击以后红点消除
+    if ([self.dotStatesMutArr[index] boolValue]) {
+        self.dotStatesMutArr[index] = @(NO);
+        self.categoryTitleView.dotStates = self.dotStatesMutArr;
+        [categoryView reloadCellAtIndex:index];
+    }
 }
 ============================== 方式四 ==============================
 -(JXCategoryNumberView *)categoryTitleView{
