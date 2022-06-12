@@ -23,7 +23,7 @@ BaseViewProtocol
 @property(nonatomic,strong)NSMutableArray &lt;UIViewModel *&gt;*dataMutArr;
 
 #pragma mark —— 一些私有方法
-///下拉刷新 （子类要进行覆写）
+/// 下拉刷新 （子类要进行覆写）
 -(void)pullToRefresh{
     [NSObject feedbackGenerator];//震动反馈
     @jobs_weakify(self)
@@ -41,7 +41,7 @@ BaseViewProtocol
         }];
     }];
 }
-///上拉加载更多 （子类要进行覆写）
+/// 上拉加载更多 （子类要进行覆写）
 -(void)loadMoreRefresh{
     [self pullToRefresh];
 }

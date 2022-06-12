@@ -55,7 +55,7 @@ UICollectionViewDataSource
         if (block4) return block4();
     }return CGSizeZero;
 }
-///下拉刷新 （子类要进行覆写）
+/// 下拉刷新 （子类要进行覆写）
 -(void)pullToRefresh{
     [NSObject feedbackGenerator];//震动反馈
     @jobs_weakify(self)
@@ -75,7 +75,7 @@ UICollectionViewDataSource
         }];
     }];
 }
-///上拉加载更多 （子类要进行覆写）
+/// 上拉加载更多 （子类要进行覆写）
 -(void)loadMoreRefresh{
     [self pullToRefresh];
 }
@@ -247,7 +247,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     return 0;
 }
-///内间距
+/// 内间距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                        layout:(UICollectionViewLayout *)collectionViewLayout
        insetForSectionAtIndex:(NSInteger)section {
