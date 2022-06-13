@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>richText</string>
+	<string>init.richText</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -155,7 +155,7 @@
 	<key>IDECodeSnippetIdentifier</key>
 	<string>7F4297A6-6D0E-49DF-8561-7F635F3625A6</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
 	<string>富文本</string>
 	<key>IDECodeSnippetTitle</key>

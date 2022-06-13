@@ -37,6 +37,7 @@
 -(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{
     [_textLab removeFromSuperview];
     _textLab = nil;
+//    self.viewModel = model ? : UIViewModel.new;
     self.viewModel = model;
     if (self.viewModel) {
         self.textLab.alpha = 1;
