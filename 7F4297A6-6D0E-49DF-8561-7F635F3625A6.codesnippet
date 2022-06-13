@@ -82,13 +82,13 @@
          
          RichTextConfig *config_01 = RichTextConfig.new;
          config_01.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
-         config_01.cor = HEXCOLOR(0x757575);
+         config_01.textCor = HEXCOLOR(0x757575);
          config_01.targetString = self.richTextMutArr[0];
          [_richTextConfigMutArr addObject:config_01];
 
          RichTextConfig *config_02 = RichTextConfig.new;
          config_02.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightMedium];
-         config_02.cor = HEXCOLOR(0xAE8330);
+         config_02.textCor = HEXCOLOR(0xAE8330);
          config_02.targetString = self.richTextMutArr[1];
          config_02.urlStr = @"click://"; /// 根据这个属性加链接,点击进行跳转
          [_richTextConfigMutArr addObject:config_02];
