@@ -32,7 +32,11 @@ JXCategoryTitleViewDataSource
 - (UIView *)tableHeaderViewInPagerView:(JXPagerView *)pagerView {
     return self.collectionHeaderView;
 }
-
+/**
+    页面朝上走 crollView.contentOffset.y 为正值
+    页面朝下走 crollView.contentOffset.y 为负值
+    初始态是0
+ */
 - (void)pagerView:(JXPagerView *)pagerView
 mainTableViewDidScroll:(UIScrollView *)scrollView{
     [self.collectionHeaderView scrollViewDidScroll:scrollView.contentOffset.y];
