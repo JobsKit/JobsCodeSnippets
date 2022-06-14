@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>init.ConfigButton</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>-(BaseButton *)userInfoBtn{
+    if (!_userInfoBtn) {
+        _userInfoBtn = BaseButton.new;
+        _userInfoBtn.jobsVisible = NO;
+        _userInfoBtn.normalTitle = [self.readUserInfo.userName stringByAppendingString:Internationalization(@"    VIP 0")];
+        _userInfoBtn.normalImage = self.readUserInfo.userHeaderIMG;
+        _userInfoBtn.normalTitleColor = HEXCOLOR(0x3D4A58);
+        _userInfoBtn.titleFont = notoSansRegular(14);
+        _userInfoBtn.imageViewFrameOffsetX = JobsWidth(10);
+        _userInfoBtn.imageViewSize = CGSizeMake(JobsWidth(30), JobsWidth(30));
+        
+//        [_userHeaderBtn.imageView cornerCutToCircleWithCornerRadius:_userHeaderBtn.imageView.image.height / 2];
+        [_userInfoBtn.imageView cornerCutToCircleWithCornerRadius:JobsWidth(15)];
+        [_userInfoBtn.imageView layerBorderColour:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
+        
+        [_userInfoBtn makeBtnLabelByShowingType:UILabelShowingType_03];
+        [_userInfoBtn layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleLeft imageTitleSpace:JobsWidth(8)];
+    }return _userInfoBtn;
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>225345B4-190A-4837-BB12-0C68D7E8F8E6</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>init.ConfigButton</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>配置UIButton</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
