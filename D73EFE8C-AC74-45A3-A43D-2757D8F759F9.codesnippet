@@ -229,7 +229,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         [self.view addSubview:_tableView];
-        [self fullScreenConstraintTargetView:_tableView];
+        [self fullScreenConstraintTargetView:_tableView topViewOffset:0];
         
         /// 判断是否是子类，如果是子类则不调用。
         /// 因为这里懒加载了约束，子类调用这个属性再进行二次约束会出现一些刷新异常

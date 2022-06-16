@@ -215,7 +215,7 @@ didSelectedItemAtIndex:(NSInteger)index {
         [self.view addSubview:_listContainerView];
         [_listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
 //            make.edges.equalTo(self.view);
-            make.top.equalTo(self.infoBoardView.mas_bottom).offset(categoryViewHeight);
+            make.top.equalTo(self.infoBoardView.mas_bottom).offset(listContainerViewDefaultOffset);
             make.left.right.bottom.equalTo(self.view);
             
         }];
@@ -299,7 +299,7 @@ didSelectedItemAtIndex:(NSInteger)index {
 didScrollSelectedItemAtIndex:(NSInteger)index{
     
 }
-//传递scrolling事件给listContainerView，必须调用！！！
+/// 传递scrolling事件给listContainerView，必须调用！！！
 - (void)categoryView:(JXCategoryBaseView *)categoryView
 scrollingFromLeftIndex:(NSInteger)leftIndex
         toRightIndex:(NSInteger)rightIndex
