@@ -11,7 +11,6 @@
 	<key>IDECodeSnippetContents</key>
 	<string>static char *UIView_BaseView_viewModel = "UIView_BaseView_viewModel";
 @dynamic viewModel;
-
 #pragma mark —— @property(nonatomic,strong)UIViewModel *viewModel;
 -(UIViewModel *)viewModel{
     UIViewModel *ViewModel = objc_getAssociatedObject(self, UIView_BaseView_viewModel);
