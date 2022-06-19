@@ -48,6 +48,7 @@ JXCategoryTitleViewDataSource
         _categoryView.cellSpacing = JobsWidth(-20);
         // 关联cotentScrollView，关联之后才可以互相联动！！！
         _categoryView.contentScrollView = self.listContainerView.scrollView;//
+        _categoryView.indicators = @[self.categoryBgView];/// BackgroundView 椭圆形
         [self.view addSubview:_categoryView];
         [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.infoBoardView.mas_bottom).offset(0);
@@ -81,6 +82,7 @@ JXCategoryTitleViewDataSource
         _categoryView.cellSpacing = JobsWidth(-20);
         // 关联cotentScrollView，关联之后才可以互相联动！！！
         _categoryView.contentScrollView = self.listContainerView.scrollView;//
+        _categoryView.indicators = @[self.categoryBgView];/// BackgroundView 椭圆形
         [self.view addSubview:_categoryView];
         [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.infoBoardView.mas_bottom).offset(0);
@@ -109,6 +111,7 @@ JXCategoryTitleViewDataSource
         _categoryTitleView.titleColorGradientEnabled = YES;
 //        _categoryTitleView.titleLabelZoomEnabled = YES;//默认为NO。为YES时titleSelectedFont失效，以titleFont为准。这句话貌似有点问题，等作者回复
         _categoryTitleView.listContainer = self.listContainerView;
+        _categoryView.indicators = @[self.categoryBgView];/// BackgroundView 椭圆形
         _categoryTitleView.dotSize = CGSizeMake(JobsWidth(5), JobsWidth(5));
         // 关联cotentScrollView，关联之后才可以互相联动！！！
         _categoryTitleView.contentScrollView = self.listContainerView.scrollView;
@@ -170,6 +173,7 @@ didSelectedItemAtIndex:(NSInteger)index {
         };
         /// 关联cotentScrollView，关联之后才可以互相联动！！！
         _categoryTitleView.contentScrollView = self.listContainerView.scrollView;
+        _categoryView.indicators = @[self.categoryBgView];/// BackgroundView 椭圆形
         [_categoryTitleView reloadDataWithoutListContainer];
         [self.view addSubview:_categoryTitleView];
         [_categoryTitleView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -191,11 +195,22 @@ didSelectedItemAtIndex:(NSInteger)index {
 @property(nonatomic,strong)JXCategoryNumberView *categoryView;/// 右上角带文字
 @property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
 @property(nonatomic,strong)JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
+@property(nonatomic,strong)JXCategoryIndicatorBackgroundView *categoryBgView;
 // Data
 @property(nonatomic,strong)NSMutableArray &lt;NSString *&gt;*titleMutArr;
 @property(nonatomic,strong)NSMutableArray &lt;NSString *&gt;*imageNames;
 @property(nonatomic,strong)NSMutableArray &lt;NSString *&gt;*selectedImageNames;
 @property(nonatomic,strong)NSMutableArray &lt;UIViewController *&gt;*childVCMutArr;
+
+-(JXCategoryIndicatorBackgroundView *)categoryBgView{
+    if (!_categoryBgView) {
+        _categoryBgView = JXCategoryIndicatorBackgroundView.new;
+        _categoryBgView.indicatorHeight = JobsWidth(30);
+        _categoryBgView.indicatorWidth = JobsWidth(76);
+        _categoryBgView.indicatorColor = HEXCOLOR(0xFFEABA);
+        _categoryBgView.indicatorCornerRadius = JXCategoryViewAutomaticDimension;
+    }return _categoryBgView;
+}
 
 -(JXCategoryIndicatorLineView *)lineView{
     if (!_lineView) {
