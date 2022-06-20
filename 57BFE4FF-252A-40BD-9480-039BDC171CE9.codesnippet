@@ -11,7 +11,10 @@
 	<key>IDECodeSnippetContents</key>
 	<string>
 @synthesize viewModel = _viewModel;
-
+#pragma mark —— @synthesize UITableViewCellProtocol
+UITableViewCellProtocol_synthesize
+#pragma mark —— @synthesize UIViewModelProtocol
+UIViewModelProtocol_synthesize
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
 +(instancetype)cellWithTableView:(UITableView *)tableView{
@@ -20,6 +23,42 @@
         cell = [CasinoAgencyTBVCell4 initTableViewCellWithStyle:UITableViewCellStyleDefault];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell setCellBgImage:KIMG(@"CasinoAgencyTBVCell4")];
+        /**
+         ❤️如果单独的对每一个row对应的UITableViewCell的边距有缩进则使用下列方法❤️
+         如果这个TableViewCell是BaseTableViewCell则不需要复写-(void)setFrame:(CGRect)frame；否则是需要：
+         
+         直接影响:
+         cell.offsetXForEach = JobsWidth(8);
+         cell.offsetYForEach = JobsWidth(6);
+         
+         // 在具体的子类去实现,分类调用异常
+         -(void)setFrame:(CGRect)frame{
+             NSLog(@"self.offsetXForEach = %f",self.offsetXForEach);
+             NSLog(@"self.offsetYForEach = %f",self.offsetYForEach);
+             frame.origin.x += self.offsetXForEach;
+             frame.origin.y += self.offsetYForEach;
+             frame.size.height -= self.offsetYForEach * 2;
+             frame.size.width -= self.offsetXForEach * 2;
+             [super setFrame:frame];
+         }
+
+         ❤️ 如果对每一section的cell进行缩进，则在外层协议：❤️
+         - (void)tableView:(UITableView *)tableView
+           willDisplayCell:(UITableViewCell *)cell
+         forRowAtIndexPath:(NSIndexPath *)indexPath{
+
+             [UITableViewCell tableView:tableView
+            makeSectionFirstAndLastCell:cell
+                            atIndexPath:indexPath
+                              cellBgCor:UIColor.whiteColor
+                          bottomLineCor:UIColor.whiteColor
+                         cellOutLineCor:HEXCOLOR(0xEEE2C8)
+                            roundCorner:JobsWidth(8)
+                            borderWidth:JobsWidth(1)
+                                     dx:JobsWidth(0)
+                                     dy:0];
+         }
+         */
         cell.offsetXForEach = JobsWidth(7);
         cell.offsetYForEach = JobsWidth(3);
         [cell cornerCutToCircleWithCornerRadius:JobsWidth(8)];
@@ -36,6 +75,11 @@
 /// 设置Cell的背景图片
 -(void)setCellBgImage:(UIImage *)bgImage;
 #pragma mark —— 子类重写父类方法
+/**
+ 1、-(void)setFrame:(CGRect)frame 此方法仅限于具体的 UITableViewCell子类使用
+ 2、如果在 BaseTableViewCell 实现此方法，那么一单相关子类集成 BaseTableViewCell 则会对-(void)setFrame:(CGRect)frame进行反复调用，因为[super setFrame:frame];
+ 3、禁止分类去调用，否则引起异常
+ */
 -(void)setFrame:(CGRect)frame{
     NSLog(@"self.offsetXForEach = %f",self.offsetXForEach);
     NSLog(@"self.offsetYForEach = %f",self.offsetYForEach);
