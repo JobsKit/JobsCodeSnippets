@@ -21,40 +21,9 @@ UICollectionViewDataSource
 @property(nonatomic,strong)UICollectionView *collectionView;
 // Data
 @property(nonatomic,strong)NSMutableArray &lt;UIViewModel *&gt;*dataMutArr;
-@property(nonatomic,strong)NSMutableArray &lt;UICollectionViewCell *&gt;*cvcellMutArr;
+@property(nonatomic,strong)NSMutableArray &lt;UICollectionViewCell *&gt;*cvcellMutArr;/// 当UICollectionViewCell不同质的时候使用
 
-/// 部署策略
--(UICollectionViewCell *)planAtIndexPath:(nonnull NSIndexPath *)indexPath
-                                  block1:(JobsReturnIDByVoidBlock)block1
-                                  block2:(JobsReturnIDByVoidBlock)block2
-                                  block3:(JobsReturnIDByVoidBlock)block3
-                                  block4:(JobsReturnIDByVoidBlock)block4{
-    if (indexPath.item == 0) {
-        if (block1) return block1();
-    }else if (indexPath.item == 1){
-        if (block2) return block2();
-    }else if(indexPath.item == self.cvcellMutArr.count - 1){
-        if (block3) return block3();
-    }else{
-        if (block4) return block4();
-    }return nil;
-}
-
--(CGSize)planSizeAtIndexPath:(nonnull NSIndexPath *)indexPath
-                      block1:(JobsReturnCGSizeByVoidBlock)block1
-                      block2:(JobsReturnCGSizeByVoidBlock)block2
-                      block3:(JobsReturnCGSizeByVoidBlock)block3
-                      block4:(JobsReturnCGSizeByVoidBlock)block4{
-    if (indexPath.item == 0) {
-        if (block1) return block1();
-    }else if (indexPath.item == 1){
-        if (block2) return block2();
-    }else if(indexPath.item == self.cvcellMutArr.count - 1){
-        if (block3) return block3();
-    }else{
-        if (block4) return block4();
-    }return CGSizeZero;
-}
+#pragma mark —— 一些私有方法
 /// 下拉刷新 （子类要进行覆写）
 -(void)pullToRefresh{
     [NSObject feedbackGenerator];//震动反馈
@@ -79,7 +48,40 @@ UICollectionViewDataSource
 -(void)loadMoreRefresh{
     [self pullToRefresh];
 }
-#pragma mark - UICollectionViewDataSource
+#pragma mark —— UICollectionViewCell 部署策略
+/// block4 为保留位，处理异常
+-(UICollectionViewCell *)planAtIndexPath:(nonnull NSIndexPath *)indexPath
+                                  block1:(JobsReturnIDByVoidBlock)block1
+                                  block2:(JobsReturnIDByVoidBlock)block2
+                                  block3:(JobsReturnIDByVoidBlock)block3
+                                  block4:(JobsReturnIDByVoidBlock)block4{
+    if (indexPath.item == 0) {
+        if (block1) return block1();
+    }else if (indexPath.item == 1){
+        if (block2) return block2();
+    }else if(indexPath.item == self.cvcellMutArr.count - 1){
+        if (block3) return block3();
+    }else{
+        if (block4) return block4();
+    }return nil;
+}
+/// block4 为保留位，处理异常
+-(CGSize)planSizeAtIndexPath:(nonnull NSIndexPath *)indexPath
+                      block1:(JobsReturnCGSizeByVoidBlock)block1
+                      block2:(JobsReturnCGSizeByVoidBlock)block2
+                      block3:(JobsReturnCGSizeByVoidBlock)block3
+                      block4:(JobsReturnCGSizeByVoidBlock)block4{
+    if (indexPath.item == 0) {
+        if (block1) return block1();
+    }else if (indexPath.item == 1){
+        if (block2) return block2();
+    }else if(indexPath.item == self.cvcellMutArr.count - 1){
+        if (block3) return block3();
+    }else{
+        if (block4) return block4();
+    }return CGSizeZero;
+}
+#pragma mark —— UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
@@ -161,12 +163,8 @@ UICollectionViewDataSource
         [footerView richElementsInViewWithModel:viewModel];
 
         return footerView;
-    }else{
-        BaseCollectionReusableView *collectionReusableView = [collectionView UICollectionElementKindSectionHeaderClass:BaseCollectionReusableView.class
-                                                                                                          forIndexPath:indexPath];
-        
-        return collectionReusableView;
-    }
+    }else return [collectionView UICollectionElementKindSectionHeaderClass:BaseCollectionReusableView.class
+                                                              forIndexPath:indexPath];
 }
 #pragma mark —— UICollectionViewDelegate
 /// 允许选中时，高亮
@@ -304,9 +302,9 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                                                                 titleStr:@"暂无数据"
                                                                detailStr:@""];
             
-            _collectionView.ly_emptyView.titleLabTextColor = KLightGrayColor;
-            _collectionView.ly_emptyView.contentViewOffset = -KWidth(180);
-            _collectionView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:KWidth(16) weight:UIFontWeightMedium];
+            _collectionView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
+            _collectionView.ly_emptyView.contentViewOffset = JobsWidth(-180);
+            _collectionView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:JobsWidth(16) weight:UIFontWeightMedium];
         }
         
         {
