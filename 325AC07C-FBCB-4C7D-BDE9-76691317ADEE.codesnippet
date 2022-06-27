@@ -21,7 +21,6 @@ UICollectionViewDataSource
 @property(nonatomic,strong)UICollectionView *collectionView;
 // Data
 @property(nonatomic,strong)NSMutableArray &lt;UIViewModel *&gt;*dataMutArr;
-@property(nonatomic,strong)NSMutableArray &lt;UICollectionViewCell *&gt;*cvcellMutArr;/// 当UICollectionViewCell不同质的时候使用
 
 #pragma mark —— 一些私有方法
 /// 下拉刷新 （子类要进行覆写）
@@ -59,7 +58,7 @@ UICollectionViewDataSource
         if (block1) return block1();
     }else if (indexPath.item == 1){
         if (block2) return block2();
-    }else if(indexPath.item == self.cvcellMutArr.count - 1){
+    }else if(indexPath.item == 2){
         if (block3) return block3();
     }else{
         if (block4) return block4();
@@ -75,7 +74,7 @@ UICollectionViewDataSource
         if (block1) return block1();
     }else if (indexPath.item == 1){
         if (block2) return block2();
-    }else if(indexPath.item == self.cvcellMutArr.count - 1){
+    }else if(indexPath.item == 2){
         if (block3) return block3();
     }else{
         if (block4) return block4();
@@ -92,14 +91,14 @@ UICollectionViewDataSource
     return [self planAtIndexPath:indexPath
                    block1:^{
         @jobs_strongify(self)
-        self-&gt;rechargeCVCellStyle2_1 = (CasinoRechargeCVCellStyle2 *)self.cvcellMutArr[indexPath.item];
+        self-&gt;rechargeCVCellStyle2_1 = [rechargeCVCellStyle2_1 cellWithCollectionView:self.collectionView forIndexPath:indexPath];
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.text = Internationalization(@"Recharge Amount");
         [self-&gt;rechargeCVCellStyle2_1 richElementsInCellWithModel:viewModel];
         return self-&gt;rechargeCVCellStyle2_1;
     }block2:^{
         @jobs_strongify(self)
-        CasinoRechargeCVCellStyle1 *cell = (CasinoRechargeCVCellStyle1 *)self.cvcellMutArr[indexPath.item];
+        CasinoRechargeCVCellStyle1 *cell = [CasinoRechargeCVCellStyle1 cellWithCollectionView:self.collectionView forIndexPath:indexPath];
         [cell richElementsInCellWithModel:self.rechargeAmountMutArr];
         @jobs_weakify(self)
         [cell actionViewBlock:^(UIButton *data) {
@@ -111,14 +110,14 @@ UICollectionViewDataSource
         return cell;
     }block3:^{
         @jobs_strongify(self)
-        self-&gt;rechargeCVCellStyle2_2 = (CasinoRechargeCVCellStyle2 *)self.cvcellMutArr[indexPath.item];
+        self-&gt;rechargeCVCellStyle2_2 = [rechargeCVCellStyle2_2 cellWithCollectionView:self.collectionView forIndexPath:indexPath];
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.text = Internationalization(@"Remitter Name");
         [self-&gt;rechargeCVCellStyle2_2 richElementsInCellWithModel:viewModel];
         return self-&gt;rechargeCVCellStyle2_2;
     }block4:^{
         @jobs_strongify(self)
-        CasinoRechargeCVCellStyle3 *cell = (CasinoRechargeCVCellStyle3 *)self.cvcellMutArr[indexPath.item];
+        CasinoRechargeCVCellStyle3 *cell = [CasinoRechargeCVCellStyle3 cellWithCollectionView:self.collectionView forIndexPath:indexPath];
         cell.idx = indexPath.item - 2;
         
         if (self.dataMutArr.count) {
@@ -144,8 +143,8 @@ UICollectionViewDataSource
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
     if (kind == UICollectionElementKindSectionHeader) {
-        JobsHotLabelWithMultiLineHeaderView * headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHotLabelWithMultiLineHeaderView.class
-                                                                                                        forIndexPath:indexPath];
+        JobsHotLabelWithMultiLineHeaderFooterView * headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHotLabelWithMultiLineHeaderFooterView.class
+                                                                                                              forIndexPath:indexPath];
         
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = Internationalization(@"独家情报");
@@ -154,8 +153,8 @@ UICollectionViewDataSource
         
         return headerView;
     }else if (kind == UICollectionElementKindSectionFooter) {
-        JobsHotLabelWithMultiLineFooterView *footerView = [collectionView UICollectionElementKindSectionFooterClass:JobsHotLabelWithMultiLineFooterView.class
-                                                                                                       forIndexPath:indexPath];
+        JobsHotLabelWithMultiLineHeaderFooterView *footerView = [collectionView UICollectionElementKindSectionFooterClass:JobsHotLabelWithMultiLineHeaderFooterView.class
+                                                                                                             forIndexPath:indexPath];
 
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.textModel.text = Internationalization(@"点击详情");
@@ -338,19 +337,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         }
 
         [self.view addSubview:_collectionView];
-        [self fullScreenConstraintTargetView:_collectionView];
+        [self fullScreenConstraintTargetView:_collectionView topViewOffset:self.getTopLineLabSize.height];
     }return _collectionView;
-}
-
--(NSMutableArray&lt;UICollectionViewCell *&gt; *)cvcellMutArr{
-    if (!_cvcellMutArr) {
-        _cvcellMutArr = NSMutableArray.array;
-        
-        [_cvcellMutArr addObject:[CasinoRechargeCVCellStyle2 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){0,0}]]];
-        [_cvcellMutArr addObject:[CasinoRechargeCVCellStyle1 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){1,0}]]];
-        [_cvcellMutArr addObject:[CasinoRechargeCVCellStyle2 cellWithCollectionView:self.collectionView forIndexPath:[self myIndexPath:(JobsIndexPath){2,0}]]];
-        
-    }return _cvcellMutArr;
 }
 
 -(NSMutableArray&lt;UIViewModel *&gt; *)dataMutArr{
