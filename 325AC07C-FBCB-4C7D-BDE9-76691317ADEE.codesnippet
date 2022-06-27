@@ -48,38 +48,7 @@ UICollectionViewDataSource
     [self pullToRefresh];
 }
 #pragma mark —— UICollectionViewCell 部署策略
-/// block4 为保留位，处理异常
--(UICollectionViewCell *)planAtIndexPath:(nonnull NSIndexPath *)indexPath
-                                  block1:(JobsReturnIDByVoidBlock)block1
-                                  block2:(JobsReturnIDByVoidBlock)block2
-                                  block3:(JobsReturnIDByVoidBlock)block3
-                                  block4:(JobsReturnIDByVoidBlock)block4{
-    if (indexPath.item == 0) {
-        if (block1) return block1();
-    }else if (indexPath.item == 1){
-        if (block2) return block2();
-    }else if(indexPath.item == 2){
-        if (block3) return block3();
-    }else{
-        if (block4) return block4();
-    }return nil;
-}
-/// block4 为保留位，处理异常
--(CGSize)planSizeAtIndexPath:(nonnull NSIndexPath *)indexPath
-                      block1:(JobsReturnCGSizeByVoidBlock)block1
-                      block2:(JobsReturnCGSizeByVoidBlock)block2
-                      block3:(JobsReturnCGSizeByVoidBlock)block3
-                      block4:(JobsReturnCGSizeByVoidBlock)block4{
-    if (indexPath.item == 0) {
-        if (block1) return block1();
-    }else if (indexPath.item == 1){
-        if (block2) return block2();
-    }else if(indexPath.item == 2){
-        if (block3) return block3();
-    }else{
-        if (block4) return block4();
-    }return CGSizeZero;
-}
+//见 @interface NSObject (JobsDeployCellConfig)
 #pragma mark —— UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -89,48 +58,22 @@ UICollectionViewDataSource
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     @jobs_weakify(self)
     return [self planAtIndexPath:indexPath
-                   block1:^{
+                          block1:^{
         @jobs_strongify(self)
-        self-&gt;rechargeCVCellStyle2_1 = [rechargeCVCellStyle2_1 cellWithCollectionView:self.collectionView forIndexPath:indexPath];
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.text = Internationalization(@"Recharge Amount");
-        [self-&gt;rechargeCVCellStyle2_1 richElementsInCellWithModel:viewModel];
-        return self-&gt;rechargeCVCellStyle2_1;
+        BaiShaETProjCountdownCVCell *cell = [BaiShaETProjCountdownCVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
+        [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section]];
+        return cell;
     }block2:^{
         @jobs_strongify(self)
-        CasinoRechargeCVCellStyle1 *cell = [CasinoRechargeCVCellStyle1 cellWithCollectionView:self.collectionView forIndexPath:indexPath];
-        [cell richElementsInCellWithModel:self.rechargeAmountMutArr];
-        @jobs_weakify(self)
-        [cell actionViewBlock:^(UIButton *data) {
-            @jobs_strongify(self)
-            NSString *string = data.titleForNormalState;
-            NSLog(@"%@",string);
-            self-&gt;rechargeCVCellStyle2_1.getTextField.text = string;
-        }];
+        BaiShaETProjOrderDetailsCVCell *cell = [BaiShaETProjOrderDetailsCVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
+        [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section]];
         return cell;
     }block3:^{
-        @jobs_strongify(self)
-        self-&gt;rechargeCVCellStyle2_2 = [rechargeCVCellStyle2_2 cellWithCollectionView:self.collectionView forIndexPath:indexPath];
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.text = Internationalization(@"Remitter Name");
-        [self-&gt;rechargeCVCellStyle2_2 richElementsInCellWithModel:viewModel];
-        return self-&gt;rechargeCVCellStyle2_2;
+        ReturnBaseCollectionViewCell;
     }block4:^{
-        @jobs_strongify(self)
-        CasinoRechargeCVCellStyle3 *cell = [CasinoRechargeCVCellStyle3 cellWithCollectionView:self.collectionView forIndexPath:indexPath];
-        cell.idx = indexPath.item - 2;
-        
-        if (self.dataMutArr.count) {
-            [cell richElementsInCellWithModel:self.dataMutArr[indexPath.item - 2]];
-            self.selectedModel = self.dataMutArr[0];
-        }
-        @jobs_weakify(self)
-        [cell actionViewBlock:^(NSString *data) {
-            @jobs_strongify(self)
-            [data pasteboard];
-        }];
-        
-        return cell;
+        ReturnBaseCollectionViewCell;
+    }block5:^id{
+        ReturnBaseCollectionViewCell;
     }];
 }
 
@@ -143,27 +86,21 @@ UICollectionViewDataSource
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
     if (kind == UICollectionElementKindSectionHeader) {
-        JobsHotLabelWithMultiLineHeaderFooterView * headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHotLabelWithMultiLineHeaderFooterView.class
-                                                                                                              forIndexPath:indexPath];
+        JobsHotLabelWithMultiLineHeaderFooterView *headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHotLabelWithMultiLineHeaderFooterView.class
+                                                                                                       forIndexPath:indexPath];
         
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = Internationalization(@"独家情报");
-        
-        [headerView richElementsInViewWithModel:viewModel];
-        
+        [headerView richElementsInViewWithModel:self.headerFooterViewDataMutArr[indexPath.section]];
         return headerView;
     }else if (kind == UICollectionElementKindSectionFooter) {
         JobsHotLabelWithMultiLineHeaderFooterView *footerView = [collectionView UICollectionElementKindSectionFooterClass:JobsHotLabelWithMultiLineHeaderFooterView.class
-                                                                                                             forIndexPath:indexPath];
-
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = Internationalization(@"点击详情");
-
-        [footerView richElementsInViewWithModel:viewModel];
-
-        return footerView;
-    }else return [collectionView UICollectionElementKindSectionHeaderClass:BaseCollectionReusableView.class
-                                                              forIndexPath:indexPath];
+                                                                                                       forIndexPath:indexPath];
+        self.connectionTipsTV.delegate = self;
+        [footerView addSubview:self.connectionTipsTV];
+        [self.connectionTipsTV mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(footerView);
+            make.bottom.equalTo(footerView).offset(JobsWidth(5));
+        }];return footerView;
+    }else ReturnBaseCollectionReusableView;
 }
 #pragma mark —— UICollectionViewDelegate
 /// 允许选中时，高亮
@@ -228,13 +165,15 @@ referenceSizeForFooterInSection:(NSInteger)section{
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return [self planSizeAtIndexPath:indexPath
                               block1:^CGSize{
-        return [CasinoRechargeCVCellStyle2 cellSizeWithModel:nil];
-    }block2:^CGSize{
-        return [CasinoRechargeCVCellStyle1 cellSizeWithModel:self.rechargeAmountMutArr];
-    }block3:^CGSize{
-        return [CasinoRechargeCVCellStyle2 cellSizeWithModel:nil];
-    }block4:^CGSize{
-        return [CasinoRechargeCVCellStyle3 cellSizeWithModel:nil];
+        return [BaiShaETProjCountdownCVCell cellSizeWithModel:nil];
+    } block2:^CGSize{
+        return [BaiShaETProjOrderDetailsCVCell cellSizeWithModel:self.dataMutArr[indexPath.section]];
+    } block3:^CGSize{
+        return CGSizeZero;
+    } block4:^CGSize{
+        return CGSizeZero;
+    } block5:^CGSize{
+        return CGSizeZero;
     }];
 }
 /// 定义的是元素垂直之间的间距
@@ -268,8 +207,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         _collectionView = [UICollectionView.alloc initWithFrame:CGRectZero
                                            collectionViewLayout:self.layout];
         _collectionView.backgroundColor = RGB_SAMECOLOR(246);
-        _collectionView.dataSource = self;
-        _collectionView.delegate = self;
+        [self dataLinkByCollectionView:_collectionView];
         _collectionView.showsVerticalScrollIndicator = NO;
 
         [_collectionView registerCollectionViewClass];

@@ -40,6 +40,8 @@
  -(UITextView *)connectionTipsTV{
      if (!_connectionTipsTV) {
          _connectionTipsTV = UITextView.new;
+         _connectionTipsTV.editable = NO;/// 必须禁止输入，否则点击将会弹出输入键盘
+         _connectionTipsTV.scrollEnabled = NO;/// 可选的，视具体情况而定
          _connectionTipsTV.userInteractionEnabled = YES;
          _connectionTipsTV.linkTextAttributes = @{NSForegroundColorAttributeName: self.richTextConfigMutArr[1].cor,
                                                   NSUnderlineColorAttributeName: [UIColor lightGrayColor],
@@ -49,9 +51,6 @@
          [_connectionTipsTV sizeToFit];
          _connectionTipsTV.backgroundColor = UIColor.clearColor;
          _connectionTipsTV.delegate = self;
-         _connectionTipsTV.editable = NO;/// 必须禁止输入，否则点击将会弹出输入键盘
-         _connectionTipsTV.scrollEnabled = NO;/// 可选的，视具体情况而定
-         
          [self.view addSubview:_connectionTipsTV];
          [_connectionTipsTV mas_makeConstraints:^(MASConstraintMaker *make) {
              make.centerX.equalTo(self.view);
