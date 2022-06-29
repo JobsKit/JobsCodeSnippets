@@ -9,7 +9,8 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>static char *UIView_BaseView_viewModel = "UIView_BaseView_viewModel";
+	<string>/// 一般的对象
+static char *UIView_BaseView_viewModel = "UIView_BaseView_viewModel";
 @dynamic viewModel;
 #pragma mark —— @property(nonatomic,strong)UIViewModel *viewModel;
 -(UIViewModel *)viewModel{
@@ -28,6 +29,19 @@
                              UIView_BaseView_viewModel,
                              viewModel,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+/// Block
+static char *NSObject_CallBackInfoByBlock_voidBlock = "NSObject_CallBackInfoByBlock_voidBlock";
+@dynamic voidBlock;
+-(jobsByVoidBlock)voidBlock{
+    return objc_getAssociatedObject(self, NSObject_CallBackInfoByBlock_voidBlock);
+}
+
+-(void)setVoidBlock:(jobsByVoidBlock)voidBlock{
+    objc_setAssociatedObject(self,
+                             NSObject_CallBackInfoByBlock_voidBlock,
+                             voidBlock,
+                             OBJC_ASSOCIATION_COPY_NONATOMIC);
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>55AA66E6-711E-4BDF-936C-E339B302CBEE</string>
