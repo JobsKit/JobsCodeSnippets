@@ -9,8 +9,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>
-&lt;
+	<string>&lt;
 BaseViewProtocol
 ,UITableViewDelegate
 ,UITableViewDataSource
@@ -106,12 +105,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForHeaderInSection:(NSInteger)section{
-    return section ? [BaseTableViewFooterView heightForHeaderInSection:nil]; : JobsWidth(10);
+    return section ? [BaseTableViewFooterView heightForHeaderInSection:nil] : JobsWidth(10);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForFooterInSection:(NSInteger)section{
-    return section ? [BaseTableViewFooterView heightForFooterInSection:nil]; : JobsWidth(10);
+    return section ? [BaseTableViewFooterView heightForFooterInSection:nil] : JobsWidth(10);
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
 - (UIView *)tableView:(UITableView *)tableView
@@ -184,7 +183,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView hideSeparatorLineAtLast:indexPath
                                   cell:cell];
-    cell.img = KIMG(@"向右的箭头（大）");
+    cell.img = JobsIMG(@"向右的箭头（大）");
     @jobs_weakify(self)
     [cell customAccessoryView:^(id data) {
         @jobs_strongify(self)
