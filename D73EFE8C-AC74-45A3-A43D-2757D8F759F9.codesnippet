@@ -106,18 +106,18 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForHeaderInSection:(NSInteger)section{
-    return section ? [BaseTableViewFooterView heightForHeaderInSection:nil] : JobsWidth(10);
+    return section ? [BaseTableViewHeaderFooterView heightForHeaderInSection:nil] : JobsWidth(10);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForFooterInSection:(NSInteger)section{
-    return section ? [BaseTableViewFooterView heightForFooterInSection:nil] : JobsWidth(10);
+    return section ? [BaseTableViewHeaderFooterView heightForFooterInSection:nil] : JobsWidth(10);
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
 - (UIView *)tableView:(UITableView *)tableView
 viewForHeaderInSection:(NSInteger)section{
     if (self.viewModel.usesTableViewHeaderView) {
-        BaseTableViewHeaderView *headerView = BaseTableViewHeaderView.jobsInitWithReuseIdentifier;
+        BaseTableViewHeaderFooterView *headerView = BaseTableViewHeaderFooterView.jobsInitWithReuseIdentifier;
         headerView.section = section;// 不写这一句有悬浮
         [headerView richElementsInViewWithModel:nil];
         @jobs_weakify(self)
@@ -130,7 +130,7 @@ viewForHeaderInSection:(NSInteger)section{
 - (nullable UIView *)tableView:(UITableView *)tableView
         viewForFooterInSection:(NSInteger)section{
     if(self.viewModel.usesTableViewFooterView){
-        BaseTableViewFooterView *tbvFooterView = BaseTableViewFooterView.jobsInitWithReuseIdentifier;
+        BaseTableViewHeaderFooterView *tbvFooterView = BaseTableViewHeaderFooterView.jobsInitWithReuseIdentifier;
         tbvFooterView.section = section;// 不写这一句有悬浮
         tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
         tbvFooterView.contentView.backgroundColor = HEXCOLOR(0xEAEBED);

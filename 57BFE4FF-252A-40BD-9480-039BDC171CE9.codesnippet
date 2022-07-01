@@ -9,8 +9,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>
-@synthesize viewModel = _viewModel;
+	<string>// @synthesize viewModel = _viewModel;
 #pragma mark —— @synthesize UITableViewCellProtocol
 UITableViewCellProtocol_synthesize
 #pragma mark —— @synthesize UIViewModelProtocol
