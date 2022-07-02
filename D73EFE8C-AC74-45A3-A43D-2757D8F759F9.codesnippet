@@ -90,6 +90,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     BaseTableViewCell *cell = (BaseTableViewCell *)self.tableViewCellMutArr[indexPath.section][indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.indexPath = indexPath;
     switch (indexPath.section) {
         case 0:
             [cell richElementsInCellWithModel:nil];
