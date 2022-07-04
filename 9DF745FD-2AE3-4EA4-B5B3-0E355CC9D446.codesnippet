@@ -9,7 +9,8 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>static char *UIViewController_NavigationBar_isHiddenNavigationBar = "UIViewController_NavigationBar_isHiddenNavigationBar";
+	<string>/// 一般的基础数据类型
+static char *UIViewController_NavigationBar_isHiddenNavigationBar = "UIViewController_NavigationBar_isHiddenNavigationBar";
 @dynamic isHiddenNavigationBar;
 #pragma mark —— @property(nonatomic,assign)BOOL isHiddenNavigationBar
 -(BOOL)isHiddenNavigationBar{//默认不显示
@@ -23,7 +24,44 @@
                              UIViewController_NavigationBar_isHiddenNavigationBar,
                              [NSNumber numberWithBool:isHiddenNavigationBar],
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}</string>
+}
+/// 结构体 CGSize
+static char *UITableViewCell_WhiteArrows_size = "UITableViewCell_WhiteArrows_size";
+@dynamic size;
+#pragma mark —— @property(nonatomic,assign)CGSize size;
+-(CGSize)size{
+    CGSize Size = [objc_getAssociatedObject(self, UITableViewCell_WhiteArrows_size) CGSizeValue];
+    if (CGSizeEqualToSize(Size, CGSizeZero)) {
+        Size = CGSizeMake(JobsWidth(10), JobsWidth(18.3));//缺省值
+        objc_setAssociatedObject(self,
+                                 UITableViewCell_WhiteArrows_size,
+                                 [NSValue valueWithCGSize:Size],
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }return Size;
+}
+
+-(void)setSize:(CGSize)size{
+    objc_setAssociatedObject(self,
+                             UITableViewCell_WhiteArrows_size,
+                             [NSValue valueWithCGSize:size],
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+/// 结构体 CGPoint
+static char *NSObject_Extras_lastPoint = "NSObject_Extras_lastPoint";
+@dynamic lastPoint;
+#pragma mark —— @property(nonatomic,assign)CGPoint lastPoint;
+-(CGPoint)lastPoint{
+    CGPoint LastPoint = [objc_getAssociatedObject(self,NSObject_Extras_lastPoint) CGPointValue];
+    return LastPoint;
+}
+
+-(void)setLastPoint:(CGPoint)lastPoint{
+    objc_setAssociatedObject(self,
+                             NSObject_Extras_lastPoint,
+                             [NSValue valueWithCGPoint:lastPoint],
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>9DF745FD-2AE3-4EA4-B5B3-0E355CC9D446</string>
 	<key>IDECodeSnippetLanguage</key>
