@@ -75,6 +75,10 @@ UIViewModelProtocol_synthesize
 +(CGSize)cellSizeWithModel:(UIViewModel *_Nullable)model;
 /// 设置Cell的背景图片
 -(void)setCellBgImage:(UIImage *)bgImage;
+/// 获取绑定的数据源
+-(UIViewModel *)getViewModel{
+    return _viewModel;
+}
 #pragma mark —— 子类重写父类方法
 /**
  1、-(void)setFrame:(CGRect)frame 此方法仅限于具体的 UITableViewCell子类使用

@@ -87,20 +87,20 @@ UICollectionViewDataSource
                                  atIndexPath:(NSIndexPath *)indexPath {
     if (kind == UICollectionElementKindSectionHeader) {
         JobsHotLabelWithMultiLineHeaderFooterView *headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHotLabelWithMultiLineHeaderFooterView.class
-                                                                                                       forIndexPath:indexPath];
+                                                                                                             forIndexPath:indexPath];
         
         [headerView richElementsInViewWithModel:self.headerFooterViewDataMutArr[indexPath.section]];
         return headerView;
     }else if (kind == UICollectionElementKindSectionFooter) {
         JobsHotLabelWithMultiLineHeaderFooterView *footerView = [collectionView UICollectionElementKindSectionFooterClass:JobsHotLabelWithMultiLineHeaderFooterView.class
-                                                                                                       forIndexPath:indexPath];
+                                                                                                             forIndexPath:indexPath];
         self.connectionTipsTV.delegate = self;
         [footerView addSubview:self.connectionTipsTV];
         [self.connectionTipsTV mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(footerView);
             make.bottom.equalTo(footerView).offset(JobsWidth(5));
         }];return footerView;
-    }else ReturnBaseCollectionReusableView;
+    }else ReturnBaseCollectionReusableViewSectionFooter;
 }
 #pragma mark —— UICollectionViewDelegate
 /// 允许选中时，高亮

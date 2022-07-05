@@ -210,6 +210,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView = UITableView.initWithStyleGrouped;
         _tableView.backgroundColor = AppMainCor_02;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        _tableView.separatorColor = HEXCOLOR(0xEEE2C8);
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.scrollEnabled = YES;
         [self dataLinkByTableView:_tableView];
