@@ -258,12 +258,12 @@ didSelectedItemAtIndex:(NSInteger)index {
 -(NSMutableArray&lt;UIViewController *&gt; *)childVCMutArr{
     if (!_childVCMutArr) {
         _childVCMutArr = NSMutableArray.array;
-        [self.childVCMutArr addObject:BaiShaETProjAllGameVC.new];// 全部游戏
-        [self.childVCMutArr addObject:BaiShaETProjManVideoVC.new];// 真人
-        [self.childVCMutArr addObject:BaiShaETProjSportVC.new];// 体育
-        [self.childVCMutArr addObject:BaiShaETProjGameOnllineVC.new];// 电子
-        [self.childVCMutArr addObject:BaiShaETProjChessPokerVC.new];// 棋牌
-        [self.childVCMutArr addObject:BaiShaETProjLotteryVC.new];// 彩票
+        [_childVCMutArr addObject:BaiShaETProjAllGameVC.new];// 全部游戏
+        [_childVCMutArr addObject:BaiShaETProjManVideoVC.new];// 真人
+        [_childVCMutArr addObject:BaiShaETProjSportVC.new];// 体育
+        [_childVCMutArr addObject:BaiShaETProjGameOnllineVC.new];// 电子
+        [_childVCMutArr addObject:BaiShaETProjChessPokerVC.new];// 棋牌
+        [_childVCMutArr addObject:BaiShaETProjLotteryVC.new];// 彩票
     }return _childVCMutArr;
 }
 
