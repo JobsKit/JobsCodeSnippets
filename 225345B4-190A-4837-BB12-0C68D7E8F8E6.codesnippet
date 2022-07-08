@@ -13,19 +13,25 @@
     if (!_userInfoBtn) {
         _userInfoBtn = BaseButton.new;
         _userInfoBtn.jobsVisible = NO;
+        /// 0、下列配置要依据的参数【执行顺序一定是从上至下👇🏻】
         _userInfoBtn.normalTitle = [self.readUserInfo.userName stringByAppendingString:Internationalization(@"    VIP 0")];
         _userInfoBtn.normalImage = self.readUserInfo.userHeaderIMG;
         _userInfoBtn.normalTitleColor = HEXCOLOR(0x3D4A58);
         _userInfoBtn.titleFont = notoSansRegular(14);
+        /// 1、约束关于Button的imageView
         _userInfoBtn.imageViewFrameOffsetX = JobsWidth(10);
         _userInfoBtn.imageViewSize = CGSizeMake(JobsWidth(30), JobsWidth(30));
-        
-//        [_userHeaderBtn.imageView cornerCutToCircleWithCornerRadius:_userHeaderBtn.imageView.image.height / 2];
-        [_userInfoBtn.imageView cornerCutToCircleWithCornerRadius:JobsWidth(15)];
         [_userInfoBtn.imageView layerBorderColour:HEXCOLOR(0xEEE2C8) andBorderWidth:JobsWidth(1)];
-        
+        [_userInfoBtn.imageView cornerCutToCircleWithCornerRadius:JobsWidth(15)];
+        // 如果要设置Button的imageView为纯圆形
+        //[_userHeaderBtn.imageView cornerCutToCircleWithCornerRadius:_userHeaderBtn.imageView.image.height / 2];
+        /// 2、自动约束
         [_userInfoBtn makeBtnLabelByShowingType:UILabelShowingType_03];
         [_userInfoBtn layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleLeft imageTitleSpace:JobsWidth(8)];
+        /// 3、如果设置的还不满意
+        _userInfoBtn.imageView.y = -JobsWidth(12);
+        _userInfoBtn.imageView.x = 0;
+        _userInfoBtn.titleLabel.x = JobsWidth(80);
     }return _userInfoBtn;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
