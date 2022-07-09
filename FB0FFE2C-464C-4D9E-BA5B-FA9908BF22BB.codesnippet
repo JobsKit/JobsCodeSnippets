@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>init.Block</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>    JobsReturnIDByVoidBlock UIImageBlock_2 = ^UIImage *{
+        image = [UIImage imageNamed:@"nodata"];//替换图片 保证一定要有
+        if (!image) {
+            image = nil;
+        }return image;
+    };</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>FB0FFE2C-464C-4D9E-BA5B-FA9908BF22BB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>创建一个Block</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>init.Block</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
