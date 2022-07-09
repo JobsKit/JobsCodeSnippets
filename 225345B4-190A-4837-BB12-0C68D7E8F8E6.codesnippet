@@ -12,6 +12,7 @@
 	<string>-(BaseButton *)userInfoBtn{
     if (!_userInfoBtn) {
         _userInfoBtn = BaseButton.new;
+        [_userInfoBtn handelAdjustsImageWhenHighlighted];
         _userInfoBtn.jobsVisible = NO;
         /// 0、下列配置要依据的参数【执行顺序一定是从上至下👇🏻】
         _userInfoBtn.normalTitle = [self.readUserInfo.userName stringByAppendingString:Internationalization(@"    VIP 0")];
