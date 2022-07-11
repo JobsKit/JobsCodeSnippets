@@ -50,6 +50,7 @@
         request.responseObject;
     } failure:^(YTKBaseRequest *request) {
         NSLog(@"failed");
+        [self checkRequest:request];
     }];
 }
 /// 多请求の同步请求

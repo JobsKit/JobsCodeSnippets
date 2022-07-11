@@ -10,7 +10,7 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>@property(nonatomic,strong)&lt;#type#&gt; *&lt;#name#&gt;;
-@property(nonatomic,assign)&lt;#type#&gt; *&lt;#name#&gt;;
+@property(nonatomic,assign)&lt;#type#&gt; &lt;#name#&gt;;
 @property(nonatomic,copy)&lt;#type#&gt; *&lt;#name#&gt;;</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>E0828AE1-0835-4AE6-8DBD-3F633D145CF2</string>
