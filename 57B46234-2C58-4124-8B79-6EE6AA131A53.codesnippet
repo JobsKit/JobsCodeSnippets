@@ -74,7 +74,7 @@ BaiShaETProjMembersBoardView.m
 	<key>IDECodeSnippetSummary</key>
 	<string>viewForHeaderInSection的使用记录</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>init.viewForHeaderInSection</string>
+	<string>init.ViewForHeaderInSection</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

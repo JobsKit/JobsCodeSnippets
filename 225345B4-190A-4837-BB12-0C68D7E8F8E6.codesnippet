@@ -33,6 +33,15 @@
         _userInfoBtn.imageView.y = -JobsWidth(12);
         _userInfoBtn.imageView.x = 0;
         _userInfoBtn.titleLabel.x = JobsWidth(80);
+        
+        @jobs_weakify(self)
+        [_userInfoBtn btnClickEventBlock:^(UIButton *x) {
+            @jobs_strongify(self)
+            x.selected = !x.selected;
+            if (self.objectBlock) self.objectBlock(x);
+            [WHToast toastErrMsg:Internationalization(@"获取节日事件需要权限呀大宝贝!")];
+        }];
+        
     }return _userInfoBtn;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
@@ -42,7 +51,7 @@
 	<key>IDECodeSnippetSummary</key>
 	<string>init.ConfigButton</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>配置UIButton</string>
+	<string>init.UIButton</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

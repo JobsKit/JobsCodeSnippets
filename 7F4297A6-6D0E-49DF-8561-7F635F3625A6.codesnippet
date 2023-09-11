@@ -158,7 +158,7 @@
 	<key>IDECodeSnippetSummary</key>
 	<string>富文本</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>init.richText</string>
+	<string>init.RichText</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

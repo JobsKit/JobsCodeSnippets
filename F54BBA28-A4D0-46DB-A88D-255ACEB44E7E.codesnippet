@@ -46,7 +46,7 @@
 	<key>IDECodeSnippetSummary</key>
 	<string>UIView的相关子类添加手势</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>init.viewGesture</string>
+	<string>init.ViewGesture</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
