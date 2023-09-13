@@ -236,11 +236,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             refreshConfigHeader.noMoreDataTitle = Internationalization(@"下拉可以刷新");
 
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = @"";
-            refreshConfigFooter.pullingTitle = @"";
-            refreshConfigFooter.refreshingTitle = @"";
-            refreshConfigFooter.willRefreshTitle = @"";
-            refreshConfigFooter.noMoreDataTitle = @"";
+            refreshConfigFooter.stateIdleTitle = Internationalization(@"");
+            refreshConfigFooter.pullingTitle = Internationalization(@"");;
+            refreshConfigFooter.refreshingTitle = Internationalization(@"");;
+            refreshConfigFooter.willRefreshTitle = Internationalization(@"");;
+            refreshConfigFooter.noMoreDataTitle = Internationalization(@"");;
 
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;
@@ -251,11 +251,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         
         {
             _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
-                                                                titleStr:Internationalization(@"暂无数据")
-                                                               detailStr:Internationalization(@"")];
+                                                                     titleStr:Internationalization(@"暂无数据")
+                                                                    detailStr:Internationalization(@"")];
             
-            _tableView.ly_emptyView.titleLabTextColor = KLightGrayColor;
-            _tableView.ly_emptyView.contentViewOffset = -JobsWidth(180);
+            _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
+            _tableView.ly_emptyView.contentViewOffset = JobsWidth(-180);
             _tableView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:JobsWidth(16) weight:UIFontWeightMedium];
         }
         

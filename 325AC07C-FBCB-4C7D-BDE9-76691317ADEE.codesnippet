@@ -225,11 +225,11 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             refreshConfigHeader.noMoreDataTitle = Internationalization(@"下拉可以刷新");
 
             MJRefreshConfigModel *refreshConfigFooter = MJRefreshConfigModel.new;
-            refreshConfigFooter.stateIdleTitle = @"";
-            refreshConfigFooter.pullingTitle = @"";
-            refreshConfigFooter.refreshingTitle = @"";
-            refreshConfigFooter.willRefreshTitle = @"";
-            refreshConfigFooter.noMoreDataTitle = @"";
+            refreshConfigFooter.stateIdleTitle = Internationalization(@"");
+            refreshConfigFooter.pullingTitle = Internationalization(@"");;
+            refreshConfigFooter.refreshingTitle = Internationalization(@"");;
+            refreshConfigFooter.willRefreshTitle = Internationalization(@"");;
+            refreshConfigFooter.noMoreDataTitle = Internationalization(@"");;
 
             self.refreshConfigHeader = refreshConfigHeader;
             self.refreshConfigFooter = refreshConfigFooter;
@@ -240,8 +240,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         
         {
             _collectionView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据"
-                                                                titleStr:@"暂无数据"
-                                                               detailStr:@""];
+                                                                     titleStr:Internationalization(@"暂无数据")
+                                                                    detailStr:Internationalization(@"")];
             
             _collectionView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
             _collectionView.ly_emptyView.contentViewOffset = JobsWidth(-180);
