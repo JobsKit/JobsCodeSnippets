@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>init.textField</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>-(JobsMagicTextField *)textField{
+    if (!_textField) {
+        _textField = JobsMagicTextField.new;
+        _textField.delegate = self;
+        _textField.backgroundColor = RGBA_COLOR(245, 245, 245, 1);
+        _textField.returnKeyType = UIReturnKeyDefault;
+        _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
+        _textField.keyboardType = UIKeyboardTypeDefault;
+        _textField.leftView = [UIImageView.alloc initWithImage:JobsIMG(@"搜索放大镜")];
+        _textField.leftViewMode = UITextFieldViewModeAlways;
+        _textField.leftViewOffsetX = JobsWidth(0);
+        _textField.placeholdAnimationable = NO;
+        _textField.offset = JobsWidth(24);
+        _textField.placeholder = Internationalization(@"      搜索关键词");
+        _textField.placeholderColor = JobsGrayColor;
+        _textField.placeholderFont = UIFontWeightRegularSize(14);
+        @jobs_weakify(self)
+        [[_textField.rac_textSignal filter:^BOOL(NSString * _Nullable value) {
+//            @jobs_strongify(self)
+            return YES;
+        }] subscribeNext:^(NSString * _Nullable x) {
+            @jobs_strongify(self)
+            NSLog(@"MMM = %@",x);
+            [self block:self-&gt;_textField
+                  value:x];
+        }];
+        [self addSubview:_textField];
+        [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(JobsWidth(220 - 80 - 12), JobsWidth(28)));
+            make.centerY.equalTo(self);
+            make.left.equalTo(self).offset(JobsWidth(12));
+        }];
+    }return _textField;
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F81C93CD-0B80-4D24-8F68-414BDCF7E097</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>JobsMagicTextField</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>init.textField</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
