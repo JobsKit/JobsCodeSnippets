@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>init.tableHeaderView_tableFooterView</string>
+	<string>init.UITableHeaderView_tableFooterView</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -25,7 +25,7 @@ _tableView.tableFooterView;
 	<key>IDECodeSnippetSummary</key>
 	<string>【DOC】tableHeaderView_tableFooterView的使用</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>init.TableHeaderView_tableFooterView</string>
+	<string>init.UITableHeaderView_tableFooterView</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
