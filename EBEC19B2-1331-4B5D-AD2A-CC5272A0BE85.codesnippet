@@ -35,11 +35,11 @@ static dispatch_once_t static_tipsView01OnceToken;
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        NotificationAdd(self,
-                        @selector(languageSwitchNotification:),
-                        LanguageSwitchNotification,
-                        nil);
-        [self netWorking];
+        JobsAddNotification(self,
+                            @selector(languageSwitchNotification:),
+                            LanguageSwitchNotification,
+                            nil);
+//        [self netWorking];
     }return self;
 }
 

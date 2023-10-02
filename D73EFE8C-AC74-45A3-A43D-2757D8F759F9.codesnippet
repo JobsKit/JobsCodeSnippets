@@ -25,20 +25,20 @@ BaseViewProtocol
 /// 下拉刷新 （子类要进行覆写）
 -(void)pullToRefresh{
     [self feedbackGenerator];//震动反馈
-    @jobs_weakify(self)
-    [self withdrawBanklist:^(NSArray *data) {
-        @jobs_strongify(self)
-        if (data.count) {
-            [self endRefreshing:self.tableView];
-        }else{
-            [self endRefreshingWithNoMoreData:self.tableView];
-        }
-        /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
-        @jobs_weakify(self)
-        [self getMainQueue:^{
-            @jobs_strongify(self)
-        }];
-    }];
+//    @jobs_weakify(self)
+//    [self withdrawBanklist:^(NSArray *data) {
+//        @jobs_strongify(self)
+//        if (data.count) {
+//            [self endRefreshing:self.tableView];
+//        }else{
+//            [self endRefreshingWithNoMoreData:self.tableView];
+//        }
+//        /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
+//        @jobs_weakify(self)
+//        [self getMainQueue:^{
+//            @jobs_strongify(self)
+//        }];
+//    }];
 }
 /// 上拉加载更多 （子类要进行覆写）
 -(void)loadMoreRefresh{
@@ -88,21 +88,30 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    BaseTableViewCell *cell = (BaseTableViewCell *)self.tableViewCellMutArr[indexPath.section][indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.indexPath = indexPath;
-    switch (indexPath.section) {
-        case 0:
-            [cell richElementsInCellWithModel:nil];
-            break;
-        case 1:
-        case 2:
-            [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section - 1][indexPath.row]];
-            break;
-        default:
-            [cell richElementsInCellWithModel:nil];
-            break;
-    }return cell;
+             
+             BaseTableViewCell *cell = [BaseTableViewCell cellStyleDefaultWithTableView:tableView];
+             cell.accessoryType = UITableViewCellAccessoryNone;
+             cell.indexPath = indexPath;
+             [cell richElementsInCellWithModel:nil];
+             
+//             {
+//                 BaseTableViewCell *cell = (BaseTableViewCell *)self.tableViewCellMutArr[indexPath.section][indexPath.row];
+//                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//                 cell.indexPath = indexPath;
+//                 switch (indexPath.section) {
+//                     case 0:
+//                         [cell richElementsInCellWithModel:nil];
+//                         break;
+//                     case 1:
+//                     case 2:
+//                         [cell richElementsInCellWithModel:self.dataMutArr[indexPath.section - 1][indexPath.row]];
+//                         break;
+//                     default:
+//                         [cell richElementsInCellWithModel:nil];
+//                         break;
+//                 }
+//             }
+             return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
@@ -218,8 +227,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 //        _tableView.dataSource = self;
         _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
         _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
-        _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
+        [_tableView registerHeaderFooterViewClass:MSCommentTableHeaderFooterView.class];
         [_tableView registerTableViewClass];
         if(@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -256,7 +265,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             
             _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
             _tableView.ly_emptyView.contentViewOffset = JobsWidth(-180);
-            _tableView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:JobsWidth(16) weight:UIFontWeightMedium];
+            _tableView.ly_emptyView.titleLabFont = UIFontWeightLightSize(16);
         }
         
         {/// 设置tabAnimated相关属性
