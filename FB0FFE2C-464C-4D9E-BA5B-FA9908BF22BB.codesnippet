@@ -9,12 +9,12 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>    JobsReturnIDByVoidBlock UIImageBlock_2 = ^UIImage *{
-        image = [UIImage imageNamed:@"nodata"];//替换图片 保证一定要有
+	<string>JobsReturnIDByVoidBlock UIImageBlock_2 = ^UIImage *{
+    image = [UIImage imageNamed:@"nodata"];//替换图片 保证一定要有
         if (!image) {
             image = nil;
         }return image;
-    };</string>
+};</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>FB0FFE2C-464C-4D9E-BA5B-FA9908BF22BB</string>
 	<key>IDECodeSnippetLanguage</key>

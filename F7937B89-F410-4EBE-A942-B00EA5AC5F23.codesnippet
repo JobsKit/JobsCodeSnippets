@@ -114,7 +114,7 @@
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>网络请求示例</string>
+	<string>猿题库-网络请求示例</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>init.Network</string>
 	<key>IDECodeSnippetUserSnippet</key>
