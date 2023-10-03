@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>init.JobsBtn</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>@jobs_weakify(self)
+&lt;#Btn#&gt; = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                           normalImage:nil
+                                        highlightImage:nil
+                                       attributedTitle:nil
+                               selectedAttributedTitle:nil
+                                    attributedSubtitle:nil
+                                                 title:Internationalization(@"充值")
+                                              subTitle:nil
+                                             titleFont:UIFontWeightBoldSize(12)
+                                          subTitleFont:nil
+                                              titleCor:RGBA_COLOR(136, 79, 2, 1)
+                                           subTitleCor:nil
+                                   baseBackgroundColor:JobsClearColor
+                                        imagePlacement:0
+                                          imagePadding:0
+                                         contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                     cornerRadiusValue:JobsWidth(16)
+                                       roundingCorners:UIRectCornerAllCorners
+                                  roundingCornersRadii:CGSizeMake(0, 0)
+                                        layerBorderCor:nil
+                                           borderWidth:JobsWidth(1)
+                                         primaryAction:nil
+                                       clickEventBlock:^id(BaseButton *x) {
+    @jobs_strongify(self)
+    x.selected = !x.selected;
+    if (self.objectBlock) self.objectBlock(x);
+    [self forceComingToPushVC:MSTopUpVC.new requestParams:@""];
+    return nil;
+}];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>3E747309-55E5-44FB-8C99-A56BF1220256</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>创建UIButton，兼容新老Api</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>init.JobsBtn</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

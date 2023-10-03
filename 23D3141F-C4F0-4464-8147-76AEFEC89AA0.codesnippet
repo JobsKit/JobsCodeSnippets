@@ -9,8 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>if(&lt;#Jobs#&gt;){
+	<string>if(Jobs){
 
+    
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>23D3141F-C4F0-4464-8147-76AEFEC89AA0</string>
