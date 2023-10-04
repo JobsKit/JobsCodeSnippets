@@ -30,9 +30,9 @@
                                baseBackgroundColor:UIColor.whiteColor
                                       imagePadding:JobsWidth(0)
                                       titlePadding:JobsWidth(0)
-                                    imagePlacement:JobsWidth(0)
-                        contentHorizontalAlignment:JobsWidth(0)
-                          contentVerticalAlignment:JobsWidth(0)
+                                    imagePlacement:NSDirectionalRectEdgeNone
+                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
                                      contentInsets:jobsSameDirectionalEdgeInsets(0)
                                  cornerRadiusValue:JobsWidth(16)
                                    roundingCorners:UIRectCornerAllCorners
@@ -58,6 +58,6 @@
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>
