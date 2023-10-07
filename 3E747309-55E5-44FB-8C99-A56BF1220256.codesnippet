@@ -10,37 +10,38 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>@jobs_weakify(self)
-&lt;#Btn#&gt; = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-                                        background:nil
-                                    titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                     textAlignment:NSTextAlignmentCenter
-                                       normalImage:nil
-                                    highlightImage:nil
-                                   attributedTitle:nil
-                           selectedAttributedTitle:nil
-                                attributedSubtitle:nil
-                                             title:Internationalization(@"提现")
-                                          subTitle:nil
-                                         titleFont:UIFontWeightBoldSize(12)
-                                      subTitleFont:nil
-                                          titleCor:JobsCor(@"#EA2918")
-                                       subTitleCor:nil
-                                titleLineBreakMode:NSLineBreakByWordWrapping
-                             subtitleLineBreakMode:NSLineBreakByWordWrapping
-                               baseBackgroundColor:UIColor.whiteColor
-                                      imagePadding:JobsWidth(0)
-                                      titlePadding:JobsWidth(0)
-                                    imagePlacement:NSDirectionalRectEdgeNone
-                        contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                          contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                     contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                 cornerRadiusValue:JobsWidth(16)
-                                   roundingCorners:UIRectCornerAllCorners
-                              roundingCornersRadii:CGSizeZero
-                                    layerBorderCor:nil
-                                       borderWidth:JobsWidth(1)
-                                     primaryAction:nil
-                                   clickEventBlock:^id(BaseButton *x) {
+    &lt;#Btn#&gt; = [BaseButton.alloc jobsInitBtnByConfiguration:nil
+                                            background:nil
+                                        titleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                         textAlignment:NSTextAlignmentCenter
+                                      subTextAlignment:NSTextAlignmentCenter
+                                           normalImage:nil
+                                        highlightImage:nil
+                                       attributedTitle:nil
+                               selectedAttributedTitle:nil
+                                    attributedSubtitle:nil
+                                                 title:Internationalization(@"提现")
+                                              subTitle:nil
+                                             titleFont:UIFontWeightBoldSize(12)
+                                          subTitleFont:nil
+                                              titleCor:JobsCor(@"#EA2918")
+                                           subTitleCor:nil
+                                    titleLineBreakMode:NSLineBreakByWordWrapping
+                                 subtitleLineBreakMode:NSLineBreakByWordWrapping
+                                   baseBackgroundColor:UIColor.whiteColor
+                                          imagePadding:JobsWidth(0)
+                                          titlePadding:JobsWidth(0)
+                                        imagePlacement:NSDirectionalRectEdgeNone
+                            contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                              contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                         contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                     cornerRadiusValue:JobsWidth(16)
+                                       roundingCorners:UIRectCornerAllCorners
+                                  roundingCornersRadii:CGSizeZero
+                                        layerBorderCor:nil
+                                           borderWidth:JobsWidth(1)
+                                         primaryAction:nil
+                                       clickEventBlock:^id(BaseButton *x) {
     @jobs_strongify(self)
     x.selected = !x.selected;
     if (self.objectBlock) self.objectBlock(x);
