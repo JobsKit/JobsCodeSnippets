@@ -21,8 +21,9 @@ UIViewModelProtocol_synthesize
     if (!cell) {
         cell = [CasinoAgencyTBVCell4 initTableViewCellWithStyle:UITableViewCellStyleDefault];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell setCellBgImage:KIMG(@"CasinoAgencyTBVCell4")];
+        [cell setCellBgImage:JobsIMG(@"CasinoAgencyTBVCell4")];
         /**
+         参见：关于UITableViewCell和UICollectionViewCell圆切角+Cell的偏移量
          ❤️如果单独的对每一个row对应的UITableViewCell的边距有缩进则使用下列方法❤️
          如果这个TableViewCell是BaseTableViewCell则不需要复写-(void)setFrame:(CGRect)frame；否则是需要：
          
@@ -64,6 +65,25 @@ UIViewModelProtocol_synthesize
         cell.offsetYForEach = JobsWidth(3);
         [cell cornerCutToCircleWithCornerRadius:JobsWidth(8)];
     }return cell;
+}
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
+
+    self.textLabelFrameOffsetX = JobsWidth(0);// 等价于用这个 self.textLabel.resetByOffsetOriginX(JobsWidth(0));
+    self.textLabelFrameOffsetY = JobsWidth(0);// 等价于用这个 self.textLabel.resetByOffsetOriginY(JobsWidth(0));
+    self.textLabelFrameOffsetWidth = JobsWidth(0);// 等价于用这个 self.textLabel.resetByOffsetWidth(JobsWidth(0));
+    self.textLabelFrameOffsetHeight = JobsWidth(0);// 等价于用这个 self.textLabel.resetByOffsetHeight(JobsWidth(0));
+    
+    self.detailTextLabelOffsetX = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetByOffsetOriginX(JobsWidth(0));
+    self.detailTextLabelOffsetY = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetByOffsetOriginY(JobsWidth(0));
+    self.detailTextLabelOffsetWidth = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetByOffsetWidth(JobsWidth(0));
+    self.detailTextLabelOffsetHeight = JobsWidth(0);// 等价于用这个 self.detailTextLabel.resetByOffsetHeight(JobsWidth(0));
+    
+    self.imageViewFrameOffsetX = JobsWidth(0);// 等价于用这个 self.imageView.resetByOffsetOriginX(JobsWidth(0));
+    self.imageViewFrameOffsetY = JobsWidth(0);// 等价于用这个 self.imageView.resetByOffsetOriginY(JobsWidth(0));
+    self.imageViewFrameOffsetWidth = JobsWidth(0);// 等价于用这个 self.imageView.resetByOffsetWidth(JobsWidth(0));
+    self.imageViewFrameOffsetHeight = JobsWidth(0);// 等价于用这个 self.imageView.resetByOffsetHeight(JobsWidth(0));
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(void)richElementsInCellWithModel:(UIViewModel *_Nullable)model{

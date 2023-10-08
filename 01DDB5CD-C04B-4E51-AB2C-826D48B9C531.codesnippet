@@ -20,12 +20,7 @@
     @jobs_strongify(self)
 } failBlock:^(HXPhotoPickerModel *data) {
     @jobs_strongify(self)
-}];
-
-
-
-
-</string>
+}];</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>01DDB5CD-C04B-4E51-AB2C-826D48B9C531</string>
 	<key>IDECodeSnippetLanguage</key>
