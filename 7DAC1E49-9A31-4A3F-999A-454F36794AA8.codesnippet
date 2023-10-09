@@ -40,6 +40,8 @@
     self.view.backgroundColor = JobsRandomColor;
     [self setGKNav];
     [self setGKNavBackBtn];
+    self.gk_navRightBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.aboutBtn];
+    self.gk_navLeftBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.aboutBtn];
     self.gk_navigationBar.jobsVisible = NO;
 //    [self.bgImageView removeFromSuperview];
 }
