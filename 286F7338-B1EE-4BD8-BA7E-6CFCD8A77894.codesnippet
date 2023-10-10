@@ -31,10 +31,8 @@
     }
     
     // UICollectionViewCell 圆切角
-    cell.contentView.layer.cornerRadius = cell.layer.cornerRadius = JobsWidth(8);
-    cell.contentView.layer.borderWidth = cell.layer.borderWidth = JobsWidth(1);
-    cell.contentView.layer.borderColor = cell.layer.borderColor = RGBA_COLOR(255, 225, 144, 1).CGColor;
-    cell.contentView.layer.masksToBounds = cell.layer.masksToBounds = YES;;
+    [cell.contentView cornerCutToCircleWithCornerRadius:JobsWidth(8)];
+    [cell.contentView layerBorderCor:RGBA_COLOR(255, 225, 144, 1) andBorderWidth:JobsWidth(0.5f)];
 
     cell.indexPath = indexPath;
     

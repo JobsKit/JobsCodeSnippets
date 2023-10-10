@@ -9,8 +9,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>// @synthesize viewModel = _viewModel;
-#pragma mark —— @synthesize UITableViewCellProtocol
+	<string>#pragma mark —— @synthesize UITableViewCellProtocol
 UITableViewCellProtocol_synthesize
 #pragma mark —— @synthesize UIViewModelProtocol
 UIViewModelProtocol_synthesize
@@ -61,8 +60,6 @@ UIViewModelProtocol_synthesize
                                      dy:0];
          }
          */
-        cell.offsetXForEach = JobsWidth(7);
-        cell.offsetYForEach = JobsWidth(3);
         [cell cornerCutToCircleWithCornerRadius:JobsWidth(8)];
     }return cell;
 }
@@ -106,6 +103,8 @@ UIViewModelProtocol_synthesize
  3、禁止分类去调用，否则引起异常
  */
 -(void)setFrame:(CGRect)frame{
+    self.offsetXForEach = JobsWidth(7);
+    self.offsetYForEach = JobsWidth(3);
     [self jobsResetTableViewCellFrame:frame
                           cellOffsetX:self.offsetXForEach
                           cellOffsetY:self.offsetYForEach];
