@@ -100,7 +100,7 @@ UICollectionViewDataSource
             make.centerX.equalTo(footerView);
             make.bottom.equalTo(footerView).offset(JobsWidth(5));
         }];return footerView;
-    }else ReturnBaseCollectionReusableView;
+    }else ReturnBaseCollectionReusableHeaderView;
 }
 #pragma mark —— UICollectionViewDelegate
 /// 允许选中时，高亮
