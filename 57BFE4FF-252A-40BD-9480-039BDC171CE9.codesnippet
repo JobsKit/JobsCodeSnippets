@@ -16,7 +16,7 @@ UITableViewCellProtocol_synthesize
 UIViewModelProtocol_synthesize
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
-+(instancetype)cellWithTableView:(UITableView *)tableView{
++(instancetype)cellStyleDefaultWithTableView:(UITableView *)tableView{
     CasinoAgencyTBVCell4 *cell = (CasinoAgencyTBVCell4 *)[tableView tableViewCellClass:CasinoAgencyTBVCell4.class];
     if (!cell) {
         cell = [CasinoAgencyTBVCell4 initTableViewCellWithStyle:UITableViewCellStyleDefault];
@@ -106,13 +106,9 @@ UIViewModelProtocol_synthesize
  3、禁止分类去调用，否则引起异常
  */
 -(void)setFrame:(CGRect)frame{
-    NSLog(@"self.offsetXForEach = %f",self.offsetXForEach);
-    NSLog(@"self.offsetYForEach = %f",self.offsetYForEach);
-    frame.origin.x += self.offsetXForEach;
-    frame.origin.y += self.offsetYForEach;
-    frame.size.height -= self.offsetYForEach * 2;
-    frame.size.width -= self.offsetXForEach * 2;
-    [super setFrame:frame];
+    [self jobsResetTableViewCellFrame:frame
+                          cellOffsetX:self.offsetXForEach
+                          cellOffsetY:self.offsetYForEach];
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>57BFE4FF-252A-40BD-9480-039BDC171CE9</string>
