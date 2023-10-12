@@ -27,6 +27,7 @@
 #pragma mark —— BaseViewProtocol
 /// 由具体的子类进行覆写
 -(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
+    // [self richElementsInViewWithModel:model];
     self.viewModel = model ? : UIViewModel.new;
     self.backgroundColor = self.viewModel.bgCor;
     self.titleLab.alpha = 1;

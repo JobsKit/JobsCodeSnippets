@@ -17,7 +17,7 @@ _tableView.tableHeaderView;
 _tableView.tableFooterView;
 ```
 
-</string>
+# UICollectionView 没有类型相关的东西</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>EA029BC5-B696-458D-AB52-9C6F064B040D</string>
 	<key>IDECodeSnippetLanguage</key>

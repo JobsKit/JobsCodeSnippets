@@ -182,7 +182,9 @@ referenceSizeForFooterInSection:(NSInteger)section{
 minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return 12;
 }
-/// 定义的是元素水平之间的间距。Api自动计算一行的Cell个数，只有当间距小于此定义的最小值时才会换行，最小执行单元是Section（每个section里面的样式是统一的）
+/// 定义的是UICollectionViewScrollDirectionVertical下，元素水平之间的间距。
+/// UICollectionViewScrollDirectionHorizontal下，垂直和水平正好相反
+/// Api自动计算一行的Cell个数，只有当间距小于此定义的最小值时才会换行，最小执行单元是Section（每个section里面的样式是统一的）
 - (CGFloat)collectionView:(UICollectionView *)collectionView
                    layout:(UICollectionViewLayout *)collectionViewLayout
 minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
@@ -210,7 +212,11 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         _collectionView.layoutSubviewsRectCorner = UIRectCornerTopLeft | UIRectCornerTopRight;
         _collectionView.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(20), JobsWidth(20));
         [self dataLinkByCollectionView:_collectionView];
+        
         _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        
+        _collectionView.bounces = NO;///设置为NO，使得collectionView只能上拉，不能下拉
         
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
         //_collectionView.contentOffset = CGPointMake(0, -JobsWidth(250));//
@@ -253,7 +259,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             
             _collectionView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
             _collectionView.ly_emptyView.contentViewOffset = JobsWidth(-180);
-            _collectionView.ly_emptyView.titleLabFont = [UIFont systemFontOfSize:JobsWidth(16) weight:UIFontWeightMedium];
+            _collectionView.ly_emptyView.titleLabFont = UIFontWeightMediumSize(16);
         }
         
         {
