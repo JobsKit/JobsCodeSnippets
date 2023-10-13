@@ -94,21 +94,21 @@ UICollectionViewDataSource
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
     if (kind.isEqualToString(UICollectionElementKindSectionHeader)) {
-        JobsHotLabelWithMultiLineHeaderFooterView *headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHotLabelWithMultiLineHeaderFooterView.class
-                                                                                                             forIndexPath:indexPath];
+        JobsHeaderFooterView *headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHeaderFooterView.class
+                                                                                        forIndexPath:indexPath];
         
-        [headerView richElementsInViewWithModel:self.headerFooterViewDataMutArr[indexPath.section]];
+        NSMutableArray *mutArr = NSMutableArray.array;
+        NSMutableArray *sectionMutArr = NSMutableArray.array;
+        UIViewModel *viewModel = UIViewModel.new;
+        viewModel.textModel.text = Internationalization(@"请快速选择金额(元)");
+        [sectionMutArr addObject:viewModel];
+        [mutArr addObject:sectionMutArr];
+        [headerView richElementsInViewWithModel:mutArr[indexPath.section]];
         return headerView;
     }else if (kind.isEqualToString(UICollectionElementKindSectionFooter)) {
-        JobsHotLabelWithMultiLineHeaderFooterView *footerView = [collectionView UICollectionElementKindSectionFooterClass:JobsHotLabelWithMultiLineHeaderFooterView.class
-                                                                                                             forIndexPath:indexPath];
-        self.connectionTipsTV.delegate = self;
-        [footerView addSubview:self.connectionTipsTV];
-        [self.connectionTipsTV mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(footerView);
-            make.bottom.equalTo(footerView).offset(JobsWidth(5));
-        }];return footerView;
-    }else ReturnBaseCollectionReusableHeaderView;
+        ReturnBaseCollectionReusableFooterView
+
+    }else ReturnBaseCollectionReusableHeaderView
 }
 #pragma mark —— UICollectionViewDelegate
 /// 允许选中时，高亮
