@@ -278,8 +278,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         
         {/// 设置tabAnimated相关属性
             // 可以不进行手动初始化，将使用默认属性
-            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:DDSignlePeopleCell.class
-                                                                  cellHeight:74.5];
+            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
+                                                                  cellHeight:[JobsBaseTableViewCell cellHeightWithModel:nil]];
             _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
             [_tableView tab_startAnimation];   // 开启动画
         }

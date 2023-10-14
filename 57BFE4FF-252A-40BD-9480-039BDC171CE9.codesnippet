@@ -10,6 +10,7 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>#pragma mark —— @synthesize UITableViewCellProtocol
+/// 在其子类，可以不写这一句
 UITableViewCellProtocol_synthesize
 #pragma mark —— @synthesize UIViewModelProtocol
 UIViewModelProtocol_synthesize
