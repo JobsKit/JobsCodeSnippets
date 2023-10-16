@@ -47,7 +47,26 @@
     if (self.objectBlock) self.objectBlock(x);
     [self jobsToastMsg:Internationalization(@"提现")];
     return nil;
-}];</string>
+}];
+/// 很重要，自定义设置UIBotton.imageView
+&lt;#Btn#&gt;.imageViewFrame = CGRectMake(0, 0, JobsWidth(45), JobsWidth(45));
+
+{
+    @jobs_weakify(self)
+    if (self.firstCommentModel.headImg.jobsCanOpenUrl) {
+        [&lt;#Btn#&gt;.imageView sd_setImageWithURL:self.firstCommentModel.headImg.jobsUrl
+                                        placeholderImage:[UIImage animatedGIFNamed:@"动态头像 尺寸126"] ? : JobsIMG(@"头像01")
+                                               completed:^(UIImage * _Nullable image,
+                                                           NSError * _Nullable error,
+                                                           SDImageCacheType cacheType,
+                                                           NSURL * _Nullable imageURL) {
+            @jobs_strongify(self)
+            &lt;#Btn#&gt;.jobsResetImage(image ? : [UIImage animatedGIFNamed:@"动态头像 尺寸126"] ? : JobsIMG(@"头像01"));
+        }];
+    }else{
+        &lt;#Btn#&gt;.jobsResetBtnImage([UIImage animatedGIFNamed:@"动态头像 尺寸126"] ? : JobsIMG(@"头像01"));
+    }
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>3E747309-55E5-44FB-8C99-A56BF1220256</string>
 	<key>IDECodeSnippetLanguage</key>
